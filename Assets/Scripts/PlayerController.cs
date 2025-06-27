@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 public class PlayerController : KinematicObject
 {
     [SerializeField] private float _maxSpeed = 7;
     [SerializeField] private float _jumpTakeOffSpeed = 7;
     [SerializeField] private float _fireCooldown = 1f;
     [SerializeField] private float _fireDuration = 0.5f;
+    [SerializeField] private JumpState jumpState = JumpState.Grounded;
+    
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
@@ -18,7 +21,6 @@ public class PlayerController : KinematicObject
     private bool isCooldown;
     private bool isFire;
 
-    [SerializeField] private JumpState jumpState = JumpState.Grounded;
     private void Awake()
     {
         animator = GetComponent<Animator>();

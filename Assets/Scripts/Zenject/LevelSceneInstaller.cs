@@ -13,7 +13,8 @@ public class LevelSceneInstaller : MonoInstaller
         Container.DeclareSignal<JumpSignal>();
         Container.DeclareSignal<FireSignal>();
         Container.DeclareSignal<PauseSignal>();
-
+        Container.DeclareSignal<EnemyCollisionSignal>();
+        
 
         Container.Bind<PlayerController>().FromInstance(_playerController).AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<PlayerInputController>().AsSingle().NonLazy();

@@ -1,53 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : KinematicObject
 {
     [SerializeField] private float _maxSpeed = 7;
     [SerializeField] private float _jumpTakeOffSpeed = 7;
-    private Collider2D collider2d;
+    [SerializeField] private float _fireCooldown = 1f;
+    [SerializeField] private float _fireDuration = 0.5f;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
     private Vector2 move;
     private bool jump;
     private bool stopJump;
+    private bool isCooldown;
+    private bool isFire;
+
     [SerializeField] private JumpState jumpState = JumpState.Grounded;
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        collider2d = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public void StartRightMove()
     {
+        move.x = 1;
         Debug.Log("StartRightMove");
     }
-    public void StopRightMove()
+    public void StopMove()
     {
-
-        Debug.Log("StopRightMove");
+        move.x = 0;
+        Debug.Log("StopMove");
     }
     public void StartLeftMove()
     {
-
+        move.x = -1;
         Debug.Log("StartLeftMove");
-    }
-    public void StopLeftMove()
-    {
-
-        Debug.Log("StopLeftMove");
     }
     public void TryJump()
     {
-
+        if (jumpState == JumpState.Grounded)
+            jumpState = JumpState.PrepareToJump;
+        else 
+        {
+            stopJump = true;
+        }
         Debug.Log("TryJump");
     }
     public void TryFire()
     {
-
-        Debug.Log("TryFire");
+        if (!isCooldown)
+        {
+            animator.SetBool("fire", true);
+            isCooldown = true;
+            isFire = true;
+            StartCoroutine(WaitAndAction(_fireCooldown, () => { isCooldown = false; }));
+            StartCoroutine(WaitAndAction(_fireDuration, () => { isFire = false; animator.SetBool("fire", false); }));
+            Debug.Log("TryFire");
+        }
+    }
+    IEnumerator WaitAndAction(float duration, UnityAction action)
+    {
+        yield return new WaitForSeconds(duration);
+        action?.Invoke();
     }
     protected override void Update()
     {
@@ -98,9 +115,10 @@ public class PlayerController : KinematicObject
         else if (move.x < -0.01f)
             spriteRenderer.flipX = true;
 
-       /* animator.SetBool("grounded", IsGrounded);
+        animator.SetBool("grounded", IsGrounded);
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / _maxSpeed);
-*/
+        animator.SetFloat("velocityY", velocity.y / _maxSpeed);
+
         targetVelocity = move * _maxSpeed;
     }
     public enum JumpState

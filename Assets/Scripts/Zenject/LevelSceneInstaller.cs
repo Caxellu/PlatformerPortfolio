@@ -9,6 +9,7 @@ public class LevelSceneInstaller : MonoInstaller
         Container.DeclareSignal<StartRightMoveSignal>();
         Container.DeclareSignal<StopRightMoveSignal>();
         Container.DeclareSignal<StartLeftMoveSignal>();
+        Container.DeclareSignal<StopLeftMoveSignal>();
         Container.DeclareSignal<JumpSignal>();
         Container.DeclareSignal<FireSignal>();
         Container.DeclareSignal<PauseSignal>();

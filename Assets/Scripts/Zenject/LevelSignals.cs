@@ -1,7 +1,7 @@
 public class StartRightMoveSignal { }
 public class StopRightMoveSignal { }
 public class StartLeftMoveSignal { }
+public class StopLeftMoveSignal { }
 public class JumpSignal { }
-public class StartFireSignal { }
-public class StopFireSignal { }
+public class FireSignal { }
 public class PauseSignal { }

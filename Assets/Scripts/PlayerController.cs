@@ -20,6 +20,35 @@ public class PlayerController : KinematicObject
         collider2d = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+    public void StartRightMove()
+    {
+        Debug.Log("StartRightMove");
+    }
+    public void StopRightMove()
+    {
+
+        Debug.Log("StopRightMove");
+    }
+    public void StartLeftMove()
+    {
+
+        Debug.Log("StartLeftMove");
+    }
+    public void StopLeftMove()
+    {
+
+        Debug.Log("StopLeftMove");
+    }
+    public void TryJump()
+    {
+
+        Debug.Log("TryJump");
+    }
+    public void TryFire()
+    {
+
+        Debug.Log("TryFire");
+    }
     protected override void Update()
     {
         UpdateJumpState();
@@ -69,9 +98,9 @@ public class PlayerController : KinematicObject
         else if (move.x < -0.01f)
             spriteRenderer.flipX = true;
 
-        animator.SetBool("grounded", IsGrounded);
+       /* animator.SetBool("grounded", IsGrounded);
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / _maxSpeed);
-
+*/
         targetVelocity = move * _maxSpeed;
     }
     public enum JumpState

@@ -8,6 +8,8 @@ public class AnimationController : KinematicObject
     public float MaxSpeed => maxSpeed;
     public Vector2 move;
 
+    private bool isRightDirection;
+    public bool ISRightDirection => isRightDirection;
     SpriteRenderer spriteRenderer;
 
     protected virtual void Awake()
@@ -18,9 +20,15 @@ public class AnimationController : KinematicObject
     protected override void ComputeVelocity()
     {
         if (move.x > 0.01f)
+        {
             spriteRenderer.flipX = false;
+            isRightDirection = true;
+        }
         else if (move.x < -0.01f)
+        {
             spriteRenderer.flipX = true;
+            isRightDirection = false;
+        }
 
         targetVelocity = move * maxSpeed;
     }

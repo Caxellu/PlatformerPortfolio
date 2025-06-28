@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
-public class PlayerController : KinematicObject
+public class PlayerController : KinematicObject, IPlayerPos
 {
     [SerializeField] private float _maxSpeed = 7;
     [SerializeField] private float _jumpTakeOffSpeed = 7;
@@ -20,6 +20,9 @@ public class PlayerController : KinematicObject
     private bool stopJump;
     private bool isCooldown;
     private bool isFire;
+    private bool isDead;
+
+    public Vector2 Position => transform.position;
 
     private void Awake()
     {
@@ -29,17 +32,14 @@ public class PlayerController : KinematicObject
     public void StartRightMove()
     {
         move.x = 1;
-        Debug.Log("StartRightMove");
     }
     public void StopMove()
     {
         move.x = 0;
-        Debug.Log("StopMove");
     }
     public void StartLeftMove()
     {
         move.x = -1;
-        Debug.Log("StartLeftMove");
     }
     public void TryJump()
     {
@@ -49,7 +49,6 @@ public class PlayerController : KinematicObject
         {
             stopJump = true;
         }
-        Debug.Log("TryJump");
     }
     public void TryFire()
     {
@@ -60,8 +59,12 @@ public class PlayerController : KinematicObject
             isFire = true;
             StartCoroutine(WaitAndAction(_fireCooldown, () => { isCooldown = false; }));
             StartCoroutine(WaitAndAction(_fireDuration, () => { isFire = false; animator.SetBool("fire", false); }));
-            Debug.Log("TryFire");
         }
+    }
+    public void Die()
+    {
+        isDead = true;
+        StopMove();
     }
     IEnumerator WaitAndAction(float duration, UnityAction action)
     {
@@ -131,4 +134,8 @@ public class PlayerController : KinematicObject
         InFlight,
         Landed
     }
+}
+public interface IPlayerPos
+{
+    public Vector2 Position { get; }
 }

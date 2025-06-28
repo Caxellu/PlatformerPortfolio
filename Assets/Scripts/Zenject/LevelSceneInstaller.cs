@@ -4,6 +4,7 @@ using Zenject;
 public class LevelSceneInstaller : MonoInstaller
 {
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private Health _playerHealth;
     public override void InstallBindings()
     {
         Container.DeclareSignal<StartRightMoveSignal>();
@@ -14,9 +15,10 @@ public class LevelSceneInstaller : MonoInstaller
         Container.DeclareSignal<FireSignal>();
         Container.DeclareSignal<PauseSignal>();
         Container.DeclareSignal<EnemyCollisionSignal>();
-        
-
-        Container.Bind<PlayerController>().FromInstance(_playerController).AsSingle().NonLazy();
+        Container.DeclareSignal<PlayerDeadSignal>();
+        Container.Bind<Health>().FromInstance(_playerHealth).AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<PlayerController>().FromInstance(_playerController).AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<PlayerInputController>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<LevelController>().AsSingle().NonLazy();
     }
 }

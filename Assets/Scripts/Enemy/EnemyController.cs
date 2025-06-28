@@ -7,26 +7,29 @@ public class EnemyController : MonoBehaviour
     [Inject] private SignalBus _signalBus;
     [Inject] private IPlayerPos _playerPos;
     [SerializeField] private PatrolPath _path;
-    [SerializeField] private int _damage;
+    [SerializeField] private EnemyType _enemyType;
+    public EnemyType EnemyType => _enemyType;
+    private EnemySO _enemySO;
+    private int damage => _enemySO.Damage;
+    private float maxSpeed => _enemySO.Speed;
 
     internal PatrolPath.Mover mover;
     internal AnimationController control;
 
     private bool isPlayerFound;
-    void Awake()
-    {
-        control = GetComponent<AnimationController>();
-    }
     public void Initialize(EnemySO enemySO)
     {
+        control = GetComponent<AnimationController>();
 
+        _enemySO = enemySO;
+        control.Initialize(enemySO.controller, maxSpeed);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
         var player = collision.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
-            _signalBus.Fire(new EnemyCollisionSignal(_damage));
+            _signalBus.Fire(new EnemyCollisionSignal(damage));
         }
     }
 
@@ -47,7 +50,7 @@ public class EnemyController : MonoBehaviour
         }
         else if (_path != null)
         {
-            if (mover == null) mover = _path.CreateMover(control.MaxSpeed * 0.5f);
+            if (mover == null) mover = _path.CreateMover(maxSpeed * 0.5f);
             control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
         }
     }

@@ -386,6 +386,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46ac97abbc2b75409a72f7416684bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &163326517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 163326518}
+  m_Layer: 5
+  m_Name: Popup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &163326518
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163326517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 225940503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &165657397
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +465,6 @@ GameObject:
   - component: {fileID: 225940502}
   - component: {fileID: 225940501}
   - component: {fileID: 225940500}
-  - component: {fileID: 225940504}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -517,6 +551,7 @@ RectTransform:
   - {fileID: 1725157072}
   - {fileID: 2121230493}
   - {fileID: 1482700487}
+  - {fileID: 163326518}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -524,24 +559,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &225940504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 225940499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7b79190d489354b8830d81322cf293, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rightMoveBtn: {fileID: 1782324642}
-  _leftMoveBtn: {fileID: 437388481}
-  _jumpBtn: {fileID: 1836768381}
-  _fireBtn: {fileID: 1314205299}
-  _pauseBtn: {fileID: 2121230497}
-  _patronText: {fileID: 2046220363}
 --- !u!1 &226325506
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +919,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbdfe5f7aecb6c4b92de6338f4fac19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &459047847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 459047849}
+  - component: {fileID: 459047848}
+  m_Layer: 0
+  m_Name: LevelUiController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &459047848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459047847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7b79190d489354b8830d81322cf293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rightMoveBtn: {fileID: 1782324642}
+  _leftMoveBtn: {fileID: 437388481}
+  _jumpBtn: {fileID: 1836768381}
+  _fireBtn: {fileID: 1314205299}
+  _pauseBtn: {fileID: 2121230497}
+  _patronText: {fileID: 2046220363}
+--- !u!4 &459047849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459047847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.8764195, y: -0.90314776, z: -0.090458065}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!213 &504560129
 Sprite:
   m_ObjectHideFlags: 0
@@ -6997,6 +7064,7 @@ SceneRoots:
   - {fileID: 1748946034}
   - {fileID: 945377806}
   - {fileID: 165657398}
+  - {fileID: 459047849}
   - {fileID: 225940503}
   - {fileID: 1860038665}
   - {fileID: 1319502436}

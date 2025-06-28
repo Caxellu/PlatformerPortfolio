@@ -1,9 +1,10 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class LevelUIController : MonoBehaviour
+public class LevelUIController : MonoBehaviour, IDisposable
 {
     [Inject] SignalBus _signalBus;
     [SerializeField] private ButtonInputProxy _rightMoveBtn;
@@ -19,7 +20,18 @@ public class LevelUIController : MonoBehaviour
         _jumpBtn.Initialize(JumpOnClick);
         _fireBtn.Initialize(FireOnClick);
         _pauseBtn.Initialize(PauseOnClick);
+        _signalBus.Subscribe<UpdateAmmoSignal>(UpdateAmmo);
     }
+
+    public void Dispose()
+    {
+        _signalBus.Unsubscribe<UpdateAmmoSignal>(UpdateAmmo);
+    }
+    private void UpdateAmmo(UpdateAmmoSignal arg)
+    {
+        _patronText.text = $"{arg.Current:0}/{arg.Max:0}";
+    }
+
     private void PauseOnClick()
     {
         _signalBus.Fire<PauseSignal>();
@@ -48,4 +60,5 @@ public class LevelUIController : MonoBehaviour
     {
         _signalBus.Fire<StopLeftMoveSignal>();
     }
+
 }

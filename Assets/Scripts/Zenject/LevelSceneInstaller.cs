@@ -20,7 +20,9 @@ public class LevelSceneInstaller : MonoInstaller
         Container.DeclareSignal<EnemyCollisionSignal>();
         Container.DeclareSignal<PlayerDeadSignal>();
         Container.DeclareSignal<BulletHitSignal>();
+        Container.DeclareSignal<UpdateAmmoSignal>();
 
+        Container.BindInterfacesTo<PopupsController<LevelPopupType>>().AsSingle().NonLazy();
         Container.Bind<EnemyFactory>().AsSingle().NonLazy();
         Container.Bind<BulletController>().AsSingle().NonLazy();
         Container.Bind<BulletFactory>().FromInstance(_bulletFactory).AsSingle().NonLazy();

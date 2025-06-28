@@ -12,6 +12,7 @@ public class BulletController
     [Inject] private IBullletSpawnPos _bullletSpawnPos;
     [Inject] private IPlayerDirection _playerDirection;
     [Inject] private CorutineManager _corutineManager;
+    private int maxAmmo;
     private int ammoCount;
     private float _bulletSpeed;
     private int _damage;
@@ -22,9 +23,11 @@ public class BulletController
         _bulletSpeed = bulletSpeed;
         _damage=damage;
         _fireCooldown=fireCooldown;
-        ammoCount=startAmmo;
+        maxAmmo = startAmmo;
+        ammoCount =startAmmo;
         _signalBus.Subscribe<BulletHitSignal>(BulletHit);
         _signalBus.Subscribe<FireSignal>(Fire);
+        _signalBus.Fire(new UpdateAmmoSignal(ammoCount, maxAmmo));
     }
     public void TryFire()
     {
@@ -33,6 +36,7 @@ public class BulletController
             isCooldown = true;
             ammoCount--;
             _corutineManager.WaitAndActionCorutineCall(_fireCooldown, () => { isCooldown = false; });
+            _signalBus.Fire(new UpdateAmmoSignal(ammoCount, maxAmmo));
             _signalBus.Fire(new FireSignal(_playerDirection.IsRightDir));
         }
     }

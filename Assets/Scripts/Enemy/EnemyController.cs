@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
         _enemySO = enemySO;
         control.Initialize(enemySO.controller, maxSpeed);
         health.Initialize(Die,null, _enemySO.Hp);
+
     }
     private void Die()
     {

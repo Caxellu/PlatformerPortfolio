@@ -6,7 +6,9 @@ using Zenject;
 
 public class PausePopup : BasePopup, IInitializablePopup<string>
 {
+    [Inject] private SignalBus _signalBus;
     [Inject] private SceneLoaderController _sceneLoaderController;
+    [Inject] IPopupsController _popupsController;
     public override Enum Type => LevelPopupType.Pause;
     [SerializeField] private Button _closeBtn;
     [SerializeField] private Button _continueBtn;
@@ -30,6 +32,7 @@ public class PausePopup : BasePopup, IInitializablePopup<string>
     }
     private void ContinueBtnOnClick()
     {
-
+        _signalBus.Fire<UnPauseSignal>();
+        _popupsController.HideCurrentPopup();
     }
 }

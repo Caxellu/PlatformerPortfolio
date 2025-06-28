@@ -34,6 +34,8 @@ public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos, I
         _fireDuration = fireDuration;
         _maxSpeed = speed;
         _signalBus.Subscribe<FireSignal>(Fire);
+        _signalBus.Subscribe<FreezeSignal>(Freeze);
+        _signalBus.Subscribe<UnFreezeSignal>(Unfreeze);
     }
 
     public void Dispose()

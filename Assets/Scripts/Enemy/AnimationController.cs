@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEditor.Animations;
+using Zenject;
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 public class AnimationController : KinematicObject
 {
+    [Inject] private SignalBus _signalBus;
     private float _maxSpeed;
     public Vector2 move;
 
@@ -15,6 +17,8 @@ public class AnimationController : KinematicObject
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        _signalBus.Subscribe<FreezeSignal>(Freeze);
+        _signalBus.Subscribe<UnFreezeSignal>(Unfreeze);
     }
     public void Initialize(AnimatorController animatorController, float maxSpeed)
     {

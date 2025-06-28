@@ -12,10 +12,9 @@ public class LevelController : IInitializable, IDisposable
     [Inject] private PlayerConfigService _playerConfigService;
     [Inject] private BulletFactory _bulletFactory;
     [Inject] private BulletController _bulletController;
-
+    [Inject] private IPopupsController _popupsController;
     public void Initialize()
     {
-        //_signalBus.Subscribe<PauseSignal>();
         _playerHealth.Initialize(() => _signalBus.Fire<PlayerDeadSignal>(),()=>_playerController.Hurt(), _playerConfigService.Config.maxHp);
         _enemyFactory.Initialize(_enemyService.EnemyList);
         _enemyManager.Initialize(_enemyFactory);
@@ -23,8 +22,25 @@ public class LevelController : IInitializable, IDisposable
         _bulletController.Initialize(_playerConfigService.Config.bulletSpeed, _playerConfigService.Config.bulletDamage, _playerConfigService.Config.fireCooldown, _playerConfigService.Config.startAmmo);
         _playerController.Initialize(_playerConfigService.Config.speed, _playerConfigService.Config.jumpTakeOffSpeed, _playerConfigService.Config.fireDuration);
 
+        _signalBus.Subscribe<PauseSignal>(Pause);
+        _signalBus.Subscribe<UnPauseSignal>(UnPause);
         _signalBus.Subscribe<PlayerDeadSignal>(PlayerDead);
+        _signalBus.Subscribe<LevelCompleteSignal>(LevelComplete);
         _signalBus.Subscribe<EnemyCollisionSignal>(PlayerTakeDamage);
+    }
+    private void LevelComplete()
+    {
+        _signalBus.Fire<FreezeSignal>();
+        _popupsController.ShowPopup(LevelPopupType.LevelComplete,true);
+    }
+    private void Pause()
+    {
+        _popupsController.ShowPopup(LevelPopupType.Pause, "Level 1");
+        _signalBus.Fire<FreezeSignal>();
+    }
+    private void UnPause()
+    {
+        _signalBus.Fire<UnFreezeSignal>();
     }
     private void PlayerTakeDamage(EnemyCollisionSignal arg)
     {

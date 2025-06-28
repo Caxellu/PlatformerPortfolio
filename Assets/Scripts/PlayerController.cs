@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using Zenject;
 
-[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
-public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos
+[RequireComponent(typeof(Animator))]
+public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos, IPlayerDirection, IDisposable
 {
     [Inject] private SignalBus _signalBus;
+    [Inject] private CorutineManager _corutineManager;
     [SerializeField] private Transform _bulletSpawnTr;
     private float _maxSpeed;
     private float _jumpTakeOffSpeed;
-    private float _fireCooldown;
     private float _fireDuration;
     private JumpState jumpState = JumpState.Grounded;
 
@@ -21,28 +19,30 @@ public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos
 
     private bool jump;
     private bool stopJump;
-    private bool isCooldown;
     private bool isFire;
-    private bool isDead;
-    private bool isRightDir;
+    private bool isRightDir = true;
 
     Vector2 IPlayerPos.Position => transform.position;
 
     Vector2 IBullletSpawnPos.Position => _bulletSpawnTr.position;
 
+    bool IPlayerDirection.IsRightDir => isRightDir;
 
-    public void Initialize(float speed, float jumpTakeOffSpeed, float fireCooldown, float fireDuration)
+    public void Initialize(float speed, float jumpTakeOffSpeed, float fireDuration)
     {
         _jumpTakeOffSpeed = jumpTakeOffSpeed;
-        _fireCooldown = fireCooldown;
         _fireDuration = fireDuration;
         _maxSpeed = speed;
+        _signalBus.Subscribe<FireSignal>(Fire);
+    }
 
+    public void Dispose()
+    {
+        _signalBus.Unsubscribe<FireSignal>(Fire);
     }
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public void StartRightMove()
     {
@@ -65,28 +65,22 @@ public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos
             stopJump = true;
         }
     }
-    public void TryFire()
+    public void Fire()
     {
-        if (!isCooldown)
-        {
-            _signalBus.Fire(new FireSignal(isRightDir));
-            animator.SetBool("fire", true);
-            isCooldown = true;
-            isFire = true;
-            StartCoroutine(WaitAndAction(_fireCooldown, () => { isCooldown = false; }));
-            StartCoroutine(WaitAndAction(_fireDuration, () => { isFire = false; animator.SetBool("fire", false); }));
-        }
+        animator.SetBool("fire", true);
+        isFire = true;
+        _corutineManager.WaitAndActionCorutineCall(_fireDuration, () => { isFire = false; animator.SetBool("fire", false); });
+    }
+    public void Hurt()
+    {
+        animator.SetTrigger("hurt");
     }
     public void Die()
     {
-        isDead = true;
         StopMove();
+        gameObject.SetActive(false);
     }
-    IEnumerator WaitAndAction(float duration, UnityAction action)
-    {
-        yield return new WaitForSeconds(duration);
-        action?.Invoke();
-    }
+   
     protected override void Update()
     {
         UpdateJumpState();
@@ -150,7 +144,6 @@ public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos
     }
 
 
-
     public enum JumpState
     {
         Grounded,
@@ -167,4 +160,8 @@ public interface IPlayerPos
 public interface IBullletSpawnPos
 {
     public Vector2 Position { get; }
+}
+public interface IPlayerDirection
+{
+    public bool IsRightDir { get; }
 }

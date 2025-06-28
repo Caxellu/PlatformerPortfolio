@@ -4,6 +4,7 @@ public class PlayerInputController: IInitializable, IDisposable
 {
     [Inject] private SignalBus _signalBus;
     [Inject] private PlayerController _playerController;
+    [Inject] private BulletController _bulletController;
     PlayerInputAction playerInputAction;
     private bool _isRightHeld = false;
     private bool _isLeftHeld = false;
@@ -14,7 +15,7 @@ public class PlayerInputController: IInitializable, IDisposable
         _signalBus.Subscribe<StartLeftMoveSignal>(StartLeftMove);
         _signalBus.Subscribe<StopLeftMoveSignal>(StopLeftMove);
         _signalBus.Subscribe<JumpSignal>(_playerController.TryJump);
-        _signalBus.Subscribe<TryFireSignal>(_playerController.TryFire);
+        _signalBus.Subscribe<TryFireSignal>(_bulletController.TryFire);
 
         playerInputAction = new PlayerInputAction();
         playerInputAction.Enable();
@@ -24,7 +25,7 @@ public class PlayerInputController: IInitializable, IDisposable
         playerInputAction.Gameplay.LeftMove.performed += ctx => StartLeftMove();
         playerInputAction.Gameplay.LeftMove.canceled += ctx => StopLeftMove();
         playerInputAction.Gameplay.Jump.started += ctx => _playerController.TryJump();
-        playerInputAction.Gameplay.Fire.started += ctx => _playerController.TryFire();
+        playerInputAction.Gameplay.Fire.started += ctx => _bulletController.TryFire();
     }
     private void StartRightMove()
     {
@@ -68,7 +69,7 @@ public class PlayerInputController: IInitializable, IDisposable
         _signalBus.Unsubscribe<StartLeftMoveSignal>(StartLeftMove);
         _signalBus.Unsubscribe<StopLeftMoveSignal>(StopLeftMove);
         _signalBus.Unsubscribe<JumpSignal>(_playerController.TryJump);
-        _signalBus.Unsubscribe<TryFireSignal>(_playerController.TryFire);
+        _signalBus.Unsubscribe<TryFireSignal>(_bulletController.TryFire);
 
         playerInputAction.Disable();
 
@@ -77,6 +78,6 @@ public class PlayerInputController: IInitializable, IDisposable
         playerInputAction.Gameplay.LeftMove.performed -= ctx => StartLeftMove();
         playerInputAction.Gameplay.LeftMove.canceled -= ctx => StopLeftMove();
         playerInputAction.Gameplay.Jump.started -= ctx => _playerController.TryJump();
-        playerInputAction.Gameplay.Fire.started -= ctx => _playerController.TryFire();
+        playerInputAction.Gameplay.Fire.started -= ctx => _bulletController.TryFire();
     }
 }

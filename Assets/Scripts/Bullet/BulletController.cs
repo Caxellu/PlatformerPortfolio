@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 
@@ -9,15 +10,31 @@ public class BulletController
     [Inject] private SignalBus _signalBus;
     [Inject] private BulletFactory _bulletFactory;
     [Inject] private IBullletSpawnPos _bullletSpawnPos;
-
+    [Inject] private IPlayerDirection _playerDirection;
+    [Inject] private CorutineManager _corutineManager;
+    private int ammoCount;
     private float _bulletSpeed;
     private int _damage;
-    public  void Initialize(float bulletSpeed, int damage)
+    private float _fireCooldown;
+    private bool isCooldown;
+    public  void Initialize(float bulletSpeed, int damage, float fireCooldown, int startAmmo)
     {
         _bulletSpeed = bulletSpeed;
-
+        _damage=damage;
+        _fireCooldown=fireCooldown;
+        ammoCount=startAmmo;
         _signalBus.Subscribe<BulletHitSignal>(BulletHit);
         _signalBus.Subscribe<FireSignal>(Fire);
+    }
+    public void TryFire()
+    {
+        if(!isCooldown && ammoCount>0)
+        {
+            isCooldown = true;
+            ammoCount--;
+            _corutineManager.WaitAndActionCorutineCall(_fireCooldown, () => { isCooldown = false; });
+            _signalBus.Fire(new FireSignal(_playerDirection.IsRightDir));
+        }
     }
     private void BulletHit(BulletHitSignal arg)
     {

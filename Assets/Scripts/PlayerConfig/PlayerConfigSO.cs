@@ -15,4 +15,5 @@ public class PlayerConfigSO : ScriptableObject
     public Bullet bulletPrefab;
     public HitBullet hitPrefab;
     public float bulletSpeed;
+    public int startAmmo;
 }

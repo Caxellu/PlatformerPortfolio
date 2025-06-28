@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(AnimationController), typeof(Collider2D))]
+[RequireComponent(typeof(AnimationController), typeof(Collider2D), typeof(Health))]
 public class EnemyController : MonoBehaviour
 {
     [Inject] private SignalBus _signalBus;
@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     private int damage => _enemySO.Damage;
     private float maxSpeed => _enemySO.Speed;
 
-    private int currentHp;
+    private Health health;
 
     internal PatrolPath.Mover mover;
     internal AnimationController control;
@@ -21,17 +21,20 @@ public class EnemyController : MonoBehaviour
     private bool isPlayerFound;
     public void Initialize(EnemySO enemySO)
     {
+        health = GetComponent<Health>();
         control = GetComponent<AnimationController>();
 
         _enemySO = enemySO;
         control.Initialize(enemySO.controller, maxSpeed);
-        currentHp = _enemySO.Hp;
+        health.Initialize(Die,null, _enemySO.Hp);
+    }
+    private void Die()
+    {
+        gameObject.SetActive(false);
     }
     public void TakeDamage(int damage)
     {
-        currentHp = Mathf.Clamp(currentHp - damage, 0, _enemySO.Hp);
-        if (currentHp == 0)
-            Debug.Log("Enemy Die");
+        health.TakeDamage(damage);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {

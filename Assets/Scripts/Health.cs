@@ -6,20 +6,29 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     private UnityAction _dieAction;
+    private UnityAction _hurtAction;
 
     private int currentHp;
     private int _maxHp;
     public bool IsAlive => currentHp > 0;
-    public void Initialize(UnityAction dieAction, int maxHp)
+    public void Initialize(UnityAction dieAction,UnityAction hurtAction, int maxHp)
     {
         _dieAction = dieAction;
+        _hurtAction= hurtAction;
         _maxHp = maxHp;
+        currentHp = _maxHp;
     }
     public void TakeDamage(int damage)
     {
         currentHp= Mathf.Clamp(currentHp-damage, 0, _maxHp);
         if (currentHp == 0)
             Die();
+        else
+            Hurt();
+    }
+    private void Hurt()
+    {
+        _hurtAction?.Invoke();
     }
     private void Die()
     {

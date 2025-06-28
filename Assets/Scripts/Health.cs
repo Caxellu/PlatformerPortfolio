@@ -5,18 +5,15 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int _maxHp;
     private UnityAction _dieAction;
 
     private int currentHp;
+    private int _maxHp;
     public bool IsAlive => currentHp > 0;
-    private void Awake()
-    {
-        currentHp = _maxHp;
-    }
-    public void Initialize(UnityAction dieAction)
+    public void Initialize(UnityAction dieAction, int maxHp)
     {
         _dieAction = dieAction;
+        _maxHp = maxHp;
     }
     public void TakeDamage(int damage)
     {

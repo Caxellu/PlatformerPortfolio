@@ -381,11 +381,11 @@ GameObject:
   m_Component:
   - component: {fileID: 126923441}
   - component: {fileID: 126923445}
+  - component: {fileID: 126923446}
   - component: {fileID: 126923440}
   - component: {fileID: 126923444}
   - component: {fileID: 126923443}
   - component: {fileID: 126923442}
-  - component: {fileID: 126923446}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -456,8 +456,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.58, y: -1.07, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2052585991}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &126923442
@@ -568,11 +569,7 @@ MonoBehaviour:
   minGroundNormalY: 0.65
   gravityModifier: 1
   velocity: {x: 0, y: 0}
-  _maxSpeed: 7
-  _jumpTakeOffSpeed: 7
-  _fireCooldown: 1
-  _fireDuration: 0.5
-  jumpState: 0
+  _bulletSpawnTr: {fileID: 2052585991}
 --- !u!114 &126923446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,7 +582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46ac97abbc2b75409a72f7416684bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 3
 --- !u!1 &165657397
 GameObject:
   m_ObjectHideFlags: 0
@@ -4892,7 +4888,7 @@ GameObject:
   - component: {fileID: 960357044}
   m_Layer: 0
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5701,6 +5697,7 @@ MonoBehaviour:
   _playerController: {fileID: 126923445}
   _playerHealth: {fileID: 126923446}
   _enemyManager: {fileID: 945377805}
+  _bulletFactory: {fileID: 1748946035}
 --- !u!114 &1319502435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6032,6 +6029,51 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1 &1748946033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1748946034}
+  - component: {fileID: 1748946035}
+  m_Layer: 0
+  m_Name: Bullets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1748946034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748946033}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.6132026, y: -1.0717067, z: -0.0011140013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1748946035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748946033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972756590ef78514f95682ccbaa6f03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parent: {fileID: 1748946034}
 --- !u!1 &1750364774
 GameObject:
   m_ObjectHideFlags: 0
@@ -6634,6 +6676,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046220361}
   m_CullTransparentMesh: 1
+--- !u!1 &2052585990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052585991}
+  m_Layer: 0
+  m_Name: SpawnbulletPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2052585991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052585990}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.15, y: -0.059, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 126923441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061803322
 GameObject:
   m_ObjectHideFlags: 0
@@ -7056,6 +7129,7 @@ SceneRoots:
   - {fileID: 2091495067}
   - {fileID: 1760814804}
   - {fileID: 126923441}
+  - {fileID: 1748946034}
   - {fileID: 945377806}
   - {fileID: 165657398}
   - {fileID: 225940503}

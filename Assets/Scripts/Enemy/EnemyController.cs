@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     private int damage => _enemySO.Damage;
     private float maxSpeed => _enemySO.Speed;
 
+    private int currentHp;
+
     internal PatrolPath.Mover mover;
     internal AnimationController control;
 
@@ -23,6 +25,13 @@ public class EnemyController : MonoBehaviour
 
         _enemySO = enemySO;
         control.Initialize(enemySO.controller, maxSpeed);
+        currentHp = _enemySO.Hp;
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHp = Mathf.Clamp(currentHp - damage, 0, _enemySO.Hp);
+        if (currentHp == 0)
+            Debug.Log("Enemy Die");
     }
     void OnCollisionEnter2D(Collision2D collision)
     {

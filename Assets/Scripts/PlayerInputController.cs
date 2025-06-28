@@ -14,7 +14,7 @@ public class PlayerInputController: IInitializable, IDisposable
         _signalBus.Subscribe<StartLeftMoveSignal>(StartLeftMove);
         _signalBus.Subscribe<StopLeftMoveSignal>(StopLeftMove);
         _signalBus.Subscribe<JumpSignal>(_playerController.TryJump);
-        _signalBus.Subscribe<FireSignal>(_playerController.TryFire);
+        _signalBus.Subscribe<TryFireSignal>(_playerController.TryFire);
 
         playerInputAction = new PlayerInputAction();
         playerInputAction.Enable();
@@ -68,7 +68,7 @@ public class PlayerInputController: IInitializable, IDisposable
         _signalBus.Unsubscribe<StartLeftMoveSignal>(StartLeftMove);
         _signalBus.Unsubscribe<StopLeftMoveSignal>(StopLeftMove);
         _signalBus.Unsubscribe<JumpSignal>(_playerController.TryJump);
-        _signalBus.Unsubscribe<FireSignal>(_playerController.TryFire);
+        _signalBus.Unsubscribe<TryFireSignal>(_playerController.TryFire);
 
         playerInputAction.Disable();
 

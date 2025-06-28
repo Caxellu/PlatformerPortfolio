@@ -30,7 +30,7 @@ public class LevelUIController : MonoBehaviour
     }
     private void FireOnClick()
     {
-        _signalBus.Fire<FireSignal>();
+        _signalBus.Fire<TryFireSignal>();
     }
     private void RightMoveOnclick_started()
     {

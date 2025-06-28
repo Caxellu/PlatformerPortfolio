@@ -9,6 +9,7 @@ public class ProjectInstaller : MonoInstaller
         SignalBusInstaller.Install(Container); 
         Container.Bind<SceneLoaderController>().AsSingle().NonLazy();
         Container.Bind<EnemyService>().AsSingle().NonLazy();
+        Container.Bind<PlayerConfigService>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<GlobalGameController>().FromInstance(_globalGameController).AsSingle().NonLazy();
     }
 }

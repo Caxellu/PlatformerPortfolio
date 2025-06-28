@@ -14,7 +14,7 @@ using UnityEngine;
         public Vector2 velocity;
 
         public bool IsGrounded { get; private set; }
-
+            
         protected Vector2 targetVelocity;
         protected Vector2 groundNormal;
         protected Rigidbody2D body;
@@ -73,7 +73,22 @@ using UnityEngine;
 
         protected virtual void FixedUpdate()
         {
-            //if already falling, fall faster than the jump speed, otherwise use normal gravity.
+        //if already falling, fall faster than the jump speed, otherwise use normal gravity.
+        if (gravityModifier == 0f)
+        {
+            velocity.y = 0;
+            velocity.x = targetVelocity.x;
+
+            var deltaPosition = velocity * Time.deltaTime;
+
+            var move = new Vector2(deltaPosition.x, 0);
+            PerformMovement(move, false);
+
+            IsGrounded = true;
+            groundNormal = Vector2.up;
+        }
+        else
+        {
             if (velocity.y < 0)
                 velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
             else
@@ -84,18 +99,15 @@ using UnityEngine;
             IsGrounded = false;
 
             var deltaPosition = velocity * Time.deltaTime;
-
             var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
 
             var move = moveAlongGround * deltaPosition.x;
-
             PerformMovement(move, false);
 
             move = Vector2.up * deltaPosition.y;
-
             PerformMovement(move, true);
-
         }
+    }
 
         void PerformMovement(Vector2 move, bool yMovement)
         {

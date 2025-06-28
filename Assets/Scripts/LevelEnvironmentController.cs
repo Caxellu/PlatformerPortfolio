@@ -1,15 +1,20 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
 
 public class LevelEnvironmentController : MonoBehaviour
 {
+    [Inject] private DiContainer _container;
     [Inject] private EnemyManager _enemyManager;
+    [SerializeField] private CinemachineConfiner _confiner;
+    [Space]
     [SerializeField] private EnemyController _enemyPrefab;
     [SerializeField] private PatrolPath _patrolPathPrefab;
-
+    [Space]
     [SerializeField] private Transform _spawnPlayerTr;
     [SerializeField] private Grid _grid;
     [SerializeField] private Transform _enemyParentTr;
@@ -40,11 +45,13 @@ public class LevelEnvironmentController : MonoBehaviour
             patrolPath.startPosition = dTO.PatrolPath.startPosition;
             patrolPath.endPosition = dTO.PatrolPath.endPosition;
 
-            EnemyController enemy = GameObject.Instantiate(_enemyPrefab, _enemyParentTr);
+            EnemyController enemy = _container.InstantiatePrefab(_enemyPrefab).GetComponent<EnemyController>();
+            enemy.transform.parent = _enemyParentTr;
+            enemy.transform.position = dTO.Pos;
             enemy.PreInitialize(dTO.EnemyType, patrolPath);
             spawnedEnemy.Add(enemy);
         }
-        GameObject.Instantiate(levelSO.LevelCompleteObj, _levelParentTr);
-        GameObject.Instantiate(levelSO.CameraPlygonCollider, _levelParentTr);
+        _container.InstantiatePrefab(levelSO.LevelCompleteObj, _levelParentTr);
+        _confiner.m_BoundingShape2D = GameObject.Instantiate(levelSO.CameraPlygonCollider, _levelParentTr);
     }
 }

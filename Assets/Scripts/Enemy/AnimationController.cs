@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor.Animations;
 using Zenject;
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
@@ -20,7 +19,7 @@ public class AnimationController : KinematicObject
         _signalBus.Subscribe<FreezeSignal>(Freeze);
         _signalBus.Subscribe<UnFreezeSignal>(Unfreeze);
     }
-    public void Initialize(AnimatorController animatorController, float maxSpeed)
+    public void Initialize(RuntimeAnimatorController animatorController, float maxSpeed)
     {
         _maxSpeed = maxSpeed;
         animator.runtimeAnimatorController= animatorController;

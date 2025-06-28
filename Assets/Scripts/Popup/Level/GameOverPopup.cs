@@ -30,6 +30,6 @@ public class GameOverPopup : BasePopup, IInitializablePopup<string>
     }
     private void RestartbtnOnClick()
     {
-
+        _sceneLoaderController.LoadScene(SceneType.Level);
     }
 }

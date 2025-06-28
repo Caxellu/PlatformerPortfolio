@@ -51,6 +51,7 @@ public class LevelController :  IInitializable, IDisposable
     }
     private void PlayerDead()
     {
+        _popupsController.ShowPopup(LevelPopupType.GameOver, "Level "+_levelService.CurrentLevelSo.LevelIndex);
         _playerController.Die();
     }
     public void Dispose()

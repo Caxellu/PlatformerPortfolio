@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public List<EnemyController> _enemyList;
+    public List<EnemyController> EnemyList;
     private EnemyFactory _enemyFactory;
     public void Initialize(EnemyFactory enemyFactory)
     {
         _enemyFactory = enemyFactory;
-        foreach (EnemyController enemy in _enemyList)
+        foreach (EnemyController enemy in EnemyList)
         {
             enemy.Initialize(_enemyFactory.Get(enemy.EnemyType));
         }

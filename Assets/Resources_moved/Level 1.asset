@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b004d22441af75843815b11897f2fe6d, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
+  LevelIndex: 1
   Tilemaps:
   - {fileID: 5749860177210383259, guid: 77b6abb281c88e84d8e55d835ca75518, type: 3}
   - {fileID: 8916439678887412846, guid: a227be47b210099448518b08095bb4f2, type: 3}

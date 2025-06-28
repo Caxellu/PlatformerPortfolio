@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(menuName = "Gameplay/LevelSO")]
 public class LevelSO : ScriptableObject
 {
+    public int LevelIndex;
     public List<Tilemap> Tilemaps;
     public Vector3 spawnPlayerPos;
     public List<EnemyDTO> enemyDTOs;

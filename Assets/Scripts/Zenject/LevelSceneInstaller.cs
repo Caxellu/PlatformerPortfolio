@@ -7,6 +7,7 @@ public class LevelSceneInstaller : MonoInstaller
     [SerializeField] private Health _playerHealth;
     [SerializeField] private EnemyManager _enemyManager;
     [SerializeField] private BulletFactory _bulletFactory;
+    [SerializeField] private LevelEnvironmentController _levelEnvironmentController;
     public override void InstallBindings()
     {
         Container.DeclareSignal<StartRightMoveSignal>();
@@ -31,6 +32,7 @@ public class LevelSceneInstaller : MonoInstaller
         Container.BindInterfacesTo<PopupsController<LevelPopupType>>().AsSingle().NonLazy();
         Container.Bind<EnemyFactory>().AsSingle().NonLazy();
         Container.Bind<BulletController>().AsSingle().NonLazy();
+        Container.Bind<LevelEnvironmentController>().FromInstance(_levelEnvironmentController).AsSingle().NonLazy();
         Container.Bind<BulletFactory>().FromInstance(_bulletFactory).AsSingle().NonLazy();
         Container.Bind<EnemyManager>().FromInstance(_enemyManager).AsSingle().NonLazy();
         Container.Bind<Health>().FromInstance(_playerHealth).AsSingle().NonLazy();

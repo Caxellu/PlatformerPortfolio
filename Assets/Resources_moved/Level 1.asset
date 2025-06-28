@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b004d22441af75843815b11897f2fe6d, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  Tilemaps:
+  - {fileID: 5749860177210383259, guid: 77b6abb281c88e84d8e55d835ca75518, type: 3}
+  - {fileID: 8916439678887412846, guid: a227be47b210099448518b08095bb4f2, type: 3}
+  - {fileID: 906891221788685164, guid: 2dc3eec76ac0f7f4693661b8d44bb68e, type: 3}
+  spawnPlayerPos: {x: -11.56, y: -0.37, z: 0}
+  enemyDTOs:
+  - Pos: {x: 6.16, y: -1.21, z: 0}
+    EnemyType: 1
+    PatrolPath:
+      globalPosition: {x: 4.49, y: -1.68}
+      startPosition: {x: -2.537814, y: 0}
+      endPosition: {x: 3.484736, y: 0}
+  - Pos: {x: 23.04, y: -1.21, z: 0}
+    EnemyType: 0
+    PatrolPath:
+      globalPosition: {x: 25.82, y: -1.68}
+      startPosition: {x: -2.537814, y: 0}
+      endPosition: {x: 3.484736, y: 0}
+  LevelCompleteObj: {fileID: 9190908547164150332, guid: 2c6f796eb42bcad40a69a6de19c7f90a, type: 3}
+  CameraPlygonCollider: {fileID: 2875410110477367790, guid: 0aacb25c0323b8546ae0d9380a442c93, type: 3}

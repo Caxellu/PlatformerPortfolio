@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private List<EnemyController> _enemyList;
+    public List<EnemyController> _enemyList;
     private EnemyFactory _enemyFactory;
     public void Initialize(EnemyFactory enemyFactory)
     {

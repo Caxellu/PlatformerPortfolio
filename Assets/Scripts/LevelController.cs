@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using Zenject;
-public class LevelController : IInitializable, IDisposable
+public class LevelController :  IInitializable, IDisposable
 {
     [Inject] private SignalBus _signalBus;
     [Inject] private Health _playerHealth;
@@ -12,9 +12,12 @@ public class LevelController : IInitializable, IDisposable
     [Inject] private PlayerConfigService _playerConfigService;
     [Inject] private BulletFactory _bulletFactory;
     [Inject] private BulletController _bulletController;
+    [Inject] private LevelEnvironmentController _levelEnvironmentController;
     [Inject] private IPopupsController _popupsController;
+    [Inject] private LevelService _levelService;
     public void Initialize()
     {
+        _levelEnvironmentController.Initialize(_levelService.CurrentLevelSo);
         _playerHealth.Initialize(() => _signalBus.Fire<PlayerDeadSignal>(),()=>_playerController.Hurt(), _playerConfigService.Config.maxHp);
         _enemyFactory.Initialize(_enemyService.EnemyList);
         _enemyManager.Initialize(_enemyFactory);

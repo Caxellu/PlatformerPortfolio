@@ -6,8 +6,8 @@ public class EnemyController : MonoBehaviour
 {
     [Inject] private SignalBus _signalBus;
     [Inject] private IPlayerPos _playerPos;
-    [SerializeField] private PatrolPath _path;
-    [SerializeField] private EnemyType _enemyType;
+    public PatrolPath _path;
+    public EnemyType _enemyType;
     public EnemyType EnemyType => _enemyType;
     private EnemySO _enemySO;
     private int damage => _enemySO.Damage;
@@ -19,6 +19,11 @@ public class EnemyController : MonoBehaviour
     internal AnimationController control;
 
     private bool isPlayerFound;
+    public void PreInitialize(EnemyType enemyType, PatrolPath path)
+    {
+        _path = path;
+        _enemyType=enemyType;
+    }
     public void Initialize(EnemySO enemySO)
     {
         health = GetComponent<Health>();

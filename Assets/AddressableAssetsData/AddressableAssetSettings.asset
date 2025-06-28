@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 0627a2266c657b547b26b92a0fd0f238
   m_currentHash:
     serializedVersion: 2
-    Hash: 826703fbc90a54fb854059122f7b70fb
+    Hash: 32d8487882585a8145b2276f398326cb
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
   - {fileID: 11400000, guid: df837671743328c4aad215e10ca213f7, type: 2}
+  - {fileID: 11400000, guid: 37d65045f3526eb4f9b605d2de9ec948, type: 2}
   - {fileID: 11400000, guid: 235ff54dd29458c4bbebe738098eeebe, type: 2}
   - {fileID: 11400000, guid: 283a18cfc3ed3bf468aabe339bf4101e, type: 2}
   m_BuildSettings:
@@ -90,6 +91,7 @@ MonoBehaviour:
     - default
     - Enemy
     - PlayerConfig
+    - Level
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 26420bf477ea22e4eba6f1808e00ba76, type: 2}

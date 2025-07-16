@@ -18,7 +18,7 @@ MonoBehaviour:
   fireCooldown: 1
   fireDuration: 0.5
   maxHp: 3
-  bulletPrefab: {fileID: 3775050586635437131, guid: 4db4fe442fe60754c86a5704a03fcf14, type: 3}
+  bulletPrefab: {fileID: 8823275549406007236, guid: 4db4fe442fe60754c86a5704a03fcf14, type: 3}
   hitPrefab: {fileID: 6445716588246663296, guid: 8783bbc4a324e8f4a9fd59e0856be0a4, type: 3}
   bulletSpeed: 9
   startAmmo: 55

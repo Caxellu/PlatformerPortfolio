@@ -12,8 +12,8 @@ public class PlayerConfigSO : ScriptableObject
     public float fireDuration;
     public int maxHp;
     [Space]
-    public Bullet bulletPrefab;
-    public HitBullet hitPrefab;
+    public BulletView bulletPrefab;
+    public HitView hitPrefab;
     public float bulletSpeed;
     public int startAmmo;
 }

@@ -1,65 +1,73 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class BulletFactory : MonoBehaviour
+public class BulletFactory : MonoBehaviour, IBulletFactory
 {
-    [Inject] private DiContainer _container;
     [SerializeField] private Transform _parent;
-    private List<Bullet> _bulletList = new List<Bullet>();
-    private List<HitBullet> _bulletHitList = new List<HitBullet>();
-    private Bullet _bulletPrefab;
-    private HitBullet _shootHitPrefab;
-    public void Initialize(Bullet bulletPrefab, HitBullet shootHitPrefab)
+
+    private Queue<BulletView> _bulletPool = new Queue<BulletView>();
+    private Queue<HitView> _hitPool = new Queue<HitView>();
+
+    private BulletView _bulletViewPrefab;
+    private HitView _hitViewPrefab;
+    private SignalBus _signalBus;
+
+
+    public void Initialize(BulletView bulletPrefab, HitView hitViewPrefab, SignalBus signalBus)
     {
-        _bulletPrefab = bulletPrefab;
-        _shootHitPrefab = shootHitPrefab;
+        _bulletViewPrefab = bulletPrefab;
+        _hitViewPrefab = hitViewPrefab;
+        _signalBus = signalBus;
     }
-    public HitBullet GetHitBulllet(Vector2 pos)
+
+    public BulletView SpawnBullet(Vector2 position, bool isRightDir, int damage, float speed)
     {
-        HitBullet hitBullet = default;
-        if (_bulletHitList.Count==0)
+        BulletView bulletView;
+
+        if (_bulletPool.Count > 0)
         {
-            hitBullet = GameObject.Instantiate(_shootHitPrefab);
-            hitBullet.transform.parent = _parent;
-            hitBullet.transform.position = pos;
+            bulletView = _bulletPool.Dequeue();
+            bulletView.gameObject.SetActive(true);
         }
         else
         {
-            hitBullet= _bulletHitList[0];
-            hitBullet.Activate();
-            hitBullet.transform.position = pos;
-            _bulletHitList.Remove(hitBullet);
+            bulletView = Instantiate(_bulletViewPrefab, _parent);
         }
-        return hitBullet;
+
+        var logic = new BulletLogic(damage, speed);
+        bulletView.Construct(logic, this, _signalBus);
+        bulletView.transform.position = position;
+        bulletView.Initialize(isRightDir);
+
+        return bulletView;
     }
-    public Bullet GetBullet(Vector2 pos)
+
+    public void ReturnToPool(BulletView bulletView)
     {
-        Bullet bullet = default;
-        if (_bulletList.Count == 0)
+        bulletView.gameObject.SetActive(false);
+        _bulletPool.Enqueue(bulletView);
+    }
+
+    public HitView SpawnHitBullet(Vector2 pos)
+    {
+        HitView hitView;
+        if (_hitPool.Count > 0)
         {
-            bullet = _container.InstantiatePrefab(_bulletPrefab.gameObject).GetComponent<Bullet>();
-            bullet.transform.parent = _parent;
-            bullet.transform.position = pos;
-        }
-        else
+            hitView = _hitPool.Dequeue();
+        }else
         {
-            bullet = _bulletList[0];
-            bullet.Activate();
-            bullet.transform.position = pos;
-            _bulletList.Remove(bullet);
+            hitView = Instantiate(_hitViewPrefab, _parent);
         }
-        return bullet;
+        hitView.Construct(this);
+        hitView.LifeCycle.Construct(2.5f);
+        hitView.LifeCycle.StartLife();
+        hitView.transform.position = pos;
+        return hitView;
     }
-    public void ReturnToPool(Bullet bullet)
+
+    public void ReturnToPool(HitView hitView)
     {
-        bullet.Disable();
-        _bulletList.Add(bullet);
-    }
-    public void ReturnToPool(HitBullet hitBullet)
-    {
-        hitBullet.Disable();
-        _bulletHitList.Add(hitBullet);
+        _hitPool.Enqueue(hitView);
     }
 }

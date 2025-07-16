@@ -6,7 +6,7 @@ using Zenject;
 public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos, IPlayerDirection, IDisposable
 {
     [Inject] private SignalBus _signalBus;
-    [Inject] private CorutineManager _corutineManager;
+    [Inject] private ICoroutineManager _corutineManager;
     [SerializeField] private Transform _bulletSpawnTr;
     private float _maxSpeed;
     private float _jumpTakeOffSpeed;
@@ -71,7 +71,7 @@ public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos, I
     {
         animator.SetBool("fire", true);
         isFire = true;
-        _corutineManager.WaitAndActionCorutineCall(_fireDuration, () => { isFire = false; animator.SetBool("fire", false); });
+        _corutineManager.RunDelayedAction(_fireDuration, () => { isFire = false; animator.SetBool("fire", false); });
     }
     public void Hurt()
     {

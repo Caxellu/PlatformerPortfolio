@@ -4,13 +4,13 @@ using Zenject;
 public class ProjectInstaller : MonoInstaller
 {
     [SerializeField] private GlobalGameController _globalGameController;
-    [SerializeField] private CorutineManager _corutineManager;
+    [SerializeField] private CoroutineManager _corutineManager;
     public override void InstallBindings()
     {
         SignalBusInstaller.Install(Container);
         Container.DeclareSignal<NextLevelSignal>();
         
-        Container.BindInterfacesAndSelfTo<CorutineManager>().FromInstance(_corutineManager).AsSingle().NonLazy();
+        Container.Bind<ICoroutineManager>().FromInstance(_corutineManager).AsSingle().NonLazy();
         Container.Bind<SceneLoaderController>().AsSingle().NonLazy();
         Container.Bind<LevelService>().AsSingle().NonLazy();
         Container.Bind<EnemyService>().AsSingle().NonLazy();

@@ -5,12 +5,10 @@ public class LevelController :  IInitializable, IDisposable
 {
     [Inject] private SignalBus _signalBus;
     [Inject] private Health _playerHealth;
-    [Inject] private EnemyFactory _enemyFactory;
-    [Inject] private EnemyService _enemyService;
     [Inject] private PlayerController _playerController;
     [Inject] private PlayerConfigService _playerConfigService;
-    [Inject] private BulletFactory _bulletFactory;
-    [Inject] private BulletController _bulletController;
+    [Inject] private IBulletFactory _bulletFactory;
+    [Inject] private PlayerFireUseCase _bulletController;
     [Inject] private LevelEnvironmentController _levelEnvironmentController;
     [Inject] private IPopupsController _popupsController;
     [Inject] private LevelService _levelService;
@@ -18,7 +16,7 @@ public class LevelController :  IInitializable, IDisposable
     {
         _levelEnvironmentController.Initialize(_levelService.CurrentLevelSo);
         _playerHealth.Initialize(() => _signalBus.Fire<PlayerDeadSignal>(),()=>_playerController.Hurt(), _playerConfigService.Config.maxHp);
-        _bulletFactory.Initialize(_playerConfigService.Config.bulletPrefab, _playerConfigService.Config.hitPrefab);
+        _bulletFactory.Initialize(_playerConfigService.Config.bulletPrefab, _playerConfigService.Config.hitPrefab, _signalBus);
         _bulletController.Initialize(_playerConfigService.Config.bulletSpeed, _playerConfigService.Config.bulletDamage, _playerConfigService.Config.fireCooldown, _playerConfigService.Config.startAmmo);
         _playerController.Initialize(_playerConfigService.Config.speed, _playerConfigService.Config.jumpTakeOffSpeed, _playerConfigService.Config.fireDuration);
 

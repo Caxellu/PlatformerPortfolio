@@ -4,7 +4,7 @@ public class PlayerInputController: IInitializable, IDisposable
 {
     [Inject] private SignalBus _signalBus;
     [Inject] private PlayerController _playerController;
-    [Inject] private BulletController _bulletController;
+    [Inject] private PlayerFireUseCase _bulletController;
     PlayerInputAction playerInputAction;
     private bool _isRightHeld = false;
     private bool _isLeftHeld = false;

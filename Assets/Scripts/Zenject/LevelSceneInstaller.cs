@@ -30,10 +30,10 @@ public class LevelSceneInstaller : MonoInstaller
 
 
         Container.BindInterfacesTo<PopupsController<LevelPopupType>>().AsSingle().NonLazy();
-        Container.Bind<BulletController>().AsSingle().NonLazy();
+        Container.Bind<PlayerFireUseCase>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<EnemyFactory>().FromInstance(_enemyFactory).AsSingle().NonLazy();
         Container.Bind<LevelEnvironmentController>().FromInstance(_levelEnvironmentController).AsSingle().NonLazy();
-        Container.Bind<BulletFactory>().FromInstance(_bulletFactory).AsSingle().NonLazy();
+        Container.Bind<IBulletFactory>().FromInstance(_bulletFactory).AsSingle();
         Container.Bind<Health>().FromInstance(_playerHealth).AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<PlayerController>().FromInstance(_playerController).AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<PlayerInputController>().AsSingle().NonLazy();

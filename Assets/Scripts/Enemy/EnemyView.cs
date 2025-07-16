@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyView : MonoBehaviour, IDamageable
 {
-    public AnimationController Animation { get; private set; }
+    public EnemyAnimationView Animation { get; private set; }
     public Health Health { get; private set; }
 
     private EnemyControllerLogic _logic;
@@ -14,7 +14,7 @@ public class EnemyView : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        Animation = GetComponent<AnimationController>();
+        Animation = GetComponent<EnemyAnimationView>();
         Health = GetComponent<Health>();
     }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
-public class AnimationController : KinematicObject
+public class EnemyAnimationView : KinematicObject
 {
     [Inject] private SignalBus _signalBus;
     private float _maxSpeed;

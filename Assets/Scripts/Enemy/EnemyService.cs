@@ -8,7 +8,6 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class EnemyService 
 {
     private List<EnemySO> enemyList= new List<EnemySO>();
-    public List<EnemySO> EnemyList=> enemyList;
     public async UniTask InitializeAsync()
     {
         enemyList = await LoadEnemySo("Enemy");
@@ -23,5 +22,9 @@ public class EnemyService
 
         Debug.LogError($"Failed to load assets with label: {key}");
         return null;
+    }
+    public EnemySO GetByType(EnemyType type)
+    {
+        return enemyList.Find(enemy => enemy.Type == type);
     }
 }

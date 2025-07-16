@@ -1,15 +1,38 @@
 using System.Collections.Generic;
-using System.Numerics;
+using UnityEngine;
+using Zenject;
 
-public class EnemyFactory 
+public class EnemyFactory : MonoBehaviour
 {
-    private List<EnemySO> enemyList;
-    public void Initialize(List<EnemySO> list)
+    [Inject] private DiContainer _container;
+    [Inject] private EnemyService _enemyService;
+    [Inject] private IPlayerPos _playerPos;
+    [Inject] private SignalBus _signalBus;
+
+    [SerializeField] private GameObject EnemyPrefab;
+    public void Spawn(EnemyType type, PatrolPath path, Vector3 pos, Transform parent)
     {
-        enemyList = list;
-    }
-   public EnemySO Get(EnemyType type)
-    {
-        return enemyList.Find(x=>x.enemyType==type);
+        var enemySO = _enemyService.GetByType(type);
+        if (enemySO == null)
+        {
+            Debug.LogError($"No EnemySO found for type {type}");
+            return;
+        }
+
+        
+        var go = _container.InstantiatePrefab(EnemyPrefab, pos, Quaternion.identity,parent);
+        var view = go.GetComponent<EnemyView>();
+
+        var data = new EnemySO
+        {
+            Type = enemySO.Type,
+            Speed = enemySO.Speed,
+            Damage = enemySO.Damage,
+            MaxHp = enemySO.MaxHp,
+            AnimatorController = enemySO.AnimatorController
+        };
+
+        var logic = new EnemyControllerLogic(view, data, _playerPos, _signalBus, path);
+        view.Construct(logic);
     }
 }

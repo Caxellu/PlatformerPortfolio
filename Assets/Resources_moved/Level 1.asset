@@ -20,13 +20,13 @@ MonoBehaviour:
   spawnPlayerPos: {x: -11.56, y: -0.37, z: 0}
   enemyDTOs:
   - Pos: {x: 6.16, y: -1.21, z: 0}
-    EnemyType: 1
+    Type: 1
     PatrolPath:
       globalPosition: {x: 4.49, y: -1.68}
       startPosition: {x: -2.537814, y: 0}
       endPosition: {x: 3.484736, y: 0}
   - Pos: {x: 23.04, y: -1.21, z: 0}
-    EnemyType: 0
+    Type: 0
     PatrolPath:
       globalPosition: {x: 25.82, y: -1.68}
       startPosition: {x: -2.537814, y: 0}

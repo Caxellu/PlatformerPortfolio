@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895f107981c69594b85a4206cd876a22, type: 3}
   m_Name: SlimeEnemy
   m_EditorClassIdentifier: 
-  enemyType: 1
+  Type: 1
   Damage: 1
-  Hp: 1
+  MaxHp: 1
   Speed: 3
-  controller: {fileID: 9100000, guid: d2786ac4b1681574e95ec5f3d614b8af, type: 2}
+  AnimatorController: {fileID: 9100000, guid: d2786ac4b1681574e95ec5f3d614b8af, type: 2}

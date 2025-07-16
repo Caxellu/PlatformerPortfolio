@@ -10,14 +10,14 @@ public class LevelSO : ScriptableObject
     public int LevelIndex;
     public List<Tilemap> Tilemaps;
     public Vector3 spawnPlayerPos;
-    public List<EnemyDTO> enemyDTOs;
+    public List<EnemyMoveDTO> enemyDTOs;
     public GameObject LevelCompleteObj;
     public PolygonCollider2D CameraPlygonCollider;
 }
 [Serializable]
-public class EnemyDTO
+public class EnemyMoveDTO
 {
     public Vector3 Pos;
-    public EnemyType EnemyType;
+    public EnemyType Type;
     public PatrolPathDTO PatrolPath;
 }

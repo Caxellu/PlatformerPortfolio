@@ -3,9 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Gameplay/EnemySO")]
 public class EnemySO : ScriptableObject
 {
-    public EnemyType enemyType;
+    public EnemyType Type;
     public int Damage;
-    public int Hp;
+    public int MaxHp;
     public float Speed;
-    public RuntimeAnimatorController controller;
+    public RuntimeAnimatorController AnimatorController;
 }

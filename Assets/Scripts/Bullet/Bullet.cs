@@ -29,10 +29,10 @@ public class Bullet : KinematicObject
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var obj = collision.gameObject.GetComponent<EnemyController>();
-        if (obj != null)
+        var damageable = collision.GetComponent<IDamageable>();
+        if (damageable != null)
         {
-            obj.TakeDamage(_damage);
+            damageable.TakeDamage(_damage);
         }
         Vector2 hitPoint = collision.ClosestPoint(transform.position);
         _signalBus.Fire(new BulletHitSignal(hitPoint));

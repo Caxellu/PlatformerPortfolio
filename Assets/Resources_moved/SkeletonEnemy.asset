@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895f107981c69594b85a4206cd876a22, type: 3}
   m_Name: SkeletonEnemy
   m_EditorClassIdentifier: 
+  Type: 0
   Damage: 10
-  Hp: 1
+  MaxHp: 1
   Speed: 4
-  controller: {fileID: 9100000, guid: e139c0f95979938429c8d88c59c038ce, type: 2}
+  AnimatorController: {fileID: 9100000, guid: e139c0f95979938429c8d88c59c038ce, type: 2}

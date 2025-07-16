@@ -3394,9 +3394,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerController: {fileID: 126923445}
   _playerHealth: {fileID: 126923446}
-  _enemyManager: {fileID: 4762018350782778583}
   _bulletFactory: {fileID: 1748946035}
   _levelEnvironmentController: {fileID: 1585370521}
+  _enemyFactory: {fileID: 454934877356161209}
 --- !u!114 &1319502435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3768,7 +3768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _confiner: {fileID: 677333554}
-  _enemyPrefab: {fileID: 6901771599566362606, guid: 5d5b39186bbe3e74d8509fc3e131c0e1, type: 3}
   _patrolPathPrefab: {fileID: 9046397960721545192, guid: 6c113d92069d4414dabd8ad1a629cd0c, type: 3}
   _spawnPlayerTr: {fileID: 1331041863}
   _grid: {fileID: 1760814803}
@@ -5449,6 +5448,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40a3714c39301249925957b3000a87e, type: 3}
+--- !u!1001 &454934877356161208
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.12809457
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.270096
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.043319795
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864551129949763299, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726872415455335045, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+      propertyPath: m_Name
+      value: EnemyFactory
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+--- !u!114 &454934877356161209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3912670655998444429, guid: cf524be6263b07340b013c4915e59ddd, type: 3}
+  m_PrefabInstance: {fileID: 454934877356161208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178b50a64907b4041be2b4ffeb60214c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &512821081755529550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6116,6 +6183,7 @@ SceneRoots:
   - {fileID: 957163764}
   - {fileID: 677333556}
   - {fileID: 2091495067}
+  - {fileID: 454934877356161208}
   - {fileID: 3809511314087453542}
   - {fileID: 1748946034}
   - {fileID: 1585370520}

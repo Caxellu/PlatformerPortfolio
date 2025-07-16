@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2022478448969696738}
   - component: {fileID: 8473118147898818193}
   - component: {fileID: 4008434439066322209}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5325722619183203344}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpawnbulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

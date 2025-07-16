@@ -24,13 +24,13 @@ public class BulletFactory : MonoBehaviour
             hitBullet = GameObject.Instantiate(_shootHitPrefab);
             hitBullet.transform.parent = _parent;
             hitBullet.transform.position = pos;
-            _bulletHitList.Add(hitBullet);
         }
         else
         {
             hitBullet= _bulletHitList[0];
             hitBullet.Activate();
             hitBullet.transform.position = pos;
+            _bulletHitList.Remove(hitBullet);
         }
         return hitBullet;
     }
@@ -48,6 +48,7 @@ public class BulletFactory : MonoBehaviour
             bullet = _bulletList[0];
             bullet.Activate();
             bullet.transform.position = pos;
+            _bulletList.Remove(bullet);
         }
         return bullet;
     }

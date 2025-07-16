@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119437830461994244}
   - component: {fileID: 2875410110477367790}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CinemachineConfiner Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

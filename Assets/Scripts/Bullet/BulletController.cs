@@ -43,7 +43,7 @@ public class BulletController
     private void BulletHit(BulletHitSignal arg)
     {
         HitBullet hitObj = _bulletFactory.GetHitBulllet(arg.Pos);
-        hitObj.Initialize(1.5f, (hitBullet) => { _bulletFactory.ReturnToPool(hitBullet); });
+        hitObj.Initialize(2.5f, (hitBullet) => { _bulletFactory.ReturnToPool(hitBullet); });
     }
     private void Fire(FireSignal arg)
     {

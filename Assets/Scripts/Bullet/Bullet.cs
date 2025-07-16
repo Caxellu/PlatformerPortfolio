@@ -14,27 +14,28 @@ public class Bullet : KinematicObject
     private Vector2 move;
     private UnityAction<Bullet> _returnToPoolAction;
 
-    public void Initialize(float speed,int damage, bool isRightDir, UnityAction<Bullet> returnToPoolAction)
-    { 
+    public void Initialize(float speed, int damage, bool isRightDir, UnityAction<Bullet> returnToPoolAction)
+    {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.flipX = !isRightDir;
         _speed = speed;
-        _damage= damage;
-        _returnToPoolAction= returnToPoolAction;
-        move = isRightDir==true? new Vector2(1,0) : new Vector2(-1,0);
+        _damage = damage;
+        _returnToPoolAction = returnToPoolAction;
+        move = isRightDir == true ? new Vector2(1, 0) : new Vector2(-1, 0);
     }
     protected override void ComputeVelocity()
     {
-        targetVelocity = move* _speed;
+        targetVelocity = move * _speed;
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        var obj= collision.gameObject.GetComponent<EnemyController>();
-        if (obj!= null)
+        var obj = collision.gameObject.GetComponent<EnemyController>();
+        if (obj != null)
         {
             obj.TakeDamage(_damage);
         }
-        _signalBus.Fire(new BulletHitSignal(collision.contacts[0].point));
+        Vector2 hitPoint = collision.ClosestPoint(transform.position);
+        _signalBus.Fire(new BulletHitSignal(hitPoint));
         _returnToPoolAction?.Invoke(this);
     }
     public void Disable()

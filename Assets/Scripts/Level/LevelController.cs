@@ -1,35 +1,79 @@
 using System;
-using UnityEngine;
 using Zenject;
-public class LevelController :  IInitializable, IDisposable
+public class LevelController : IInitializable, IDisposable
 {
-    [Inject] private SignalBus _signalBus;
-    [Inject] private Health _playerHealth;
-    [Inject] private PlayerController _playerController;
-    [Inject] private PlayerConfigService _playerConfigService;
-    [Inject] private IBulletFactory _bulletFactory;
-    [Inject] private PlayerFireUseCase _bulletController;
-    [Inject] private LevelEnvironmentController _levelEnvironmentController;
-    [Inject] private IPopupsController _popupsController;
-    [Inject] private LevelService _levelService;
+    private readonly SignalBus _signalBus;
+    private readonly PlayerConfigService _playerConfigService;
+    private readonly IBulletFactory _bulletFactory;
+    private readonly LevelEnvironmentController _levelEnvironmentController;
+    private readonly IPopupsController _popupsController;
+    private readonly LevelService _levelService;
+    private readonly ICoroutineManager _coroutineManager;
+    private readonly PlayerInputController _playerInputController;
+    private readonly EnemyFactory _enemyFactory;
+    private readonly IPlayerView _playerView;
+    private readonly IPlayerPos _playerPos;
+    private readonly IPlayerMovement _playerMovement;
+    private readonly IBullletSpawnPos _bullletSpawnPos;
+    private readonly IPlayerDirection _playerDirection;
+
+    public LevelController(
+        SignalBus signalBus,
+        PlayerConfigService playerConfigService,
+        IBulletFactory bulletFactory,
+        LevelEnvironmentController levelEnvironmentController,
+        IPopupsController popupsController,
+        LevelService levelService,
+        ICoroutineManager coroutineManager,
+        PlayerInputController playerInputController,
+        EnemyFactory enemyFactory,
+        IPlayerView playerView,
+        IPlayerPos playerPos,
+        IPlayerMovement playerMovement,
+        IBullletSpawnPos bullletSpawnPos,
+        IPlayerDirection playerDirection)
+    {
+        _signalBus = signalBus;
+        _playerConfigService = playerConfigService;
+        _bulletFactory = bulletFactory;
+        _levelEnvironmentController = levelEnvironmentController;
+        _popupsController = popupsController;
+        _levelService = levelService;
+        _coroutineManager = coroutineManager;
+        _playerInputController = playerInputController;
+        _enemyFactory = enemyFactory;
+        _playerView = playerView;
+        _playerPos = playerPos;
+        _playerMovement = playerMovement;
+        _bullletSpawnPos = bullletSpawnPos;
+        _playerDirection = playerDirection;
+    }
     public void Initialize()
     {
-        _levelEnvironmentController.Initialize(_levelService.CurrentLevelSo);
-        _playerHealth.Initialize(() => _signalBus.Fire<PlayerDeadSignal>(),()=>_playerController.Hurt(), _playerConfigService.Config.maxHp);
         _bulletFactory.Initialize(_playerConfigService.Config.bulletPrefab, _playerConfigService.Config.hitPrefab, _signalBus);
-        _bulletController.Initialize(_playerConfigService.Config.bulletSpeed, _playerConfigService.Config.bulletDamage, _playerConfigService.Config.fireCooldown, _playerConfigService.Config.startAmmo);
-        _playerController.Initialize(_playerConfigService.Config.speed, _playerConfigService.Config.jumpTakeOffSpeed, _playerConfigService.Config.fireDuration);
 
+        PlayerModel playerModel = new PlayerModel(_playerConfigService.Config.speed, _playerConfigService.Config.jumpTakeOffSpeed, _playerConfigService.Config.maxHp);
+        _playerView.Initialize(_playerConfigService.Config.fireDuration, _coroutineManager);
+        PlayerPresenter playerPresenter = new PlayerPresenter(playerModel, _playerView, _playerMovement, _signalBus);
+        
+        _enemyFactory.Construct(_playerPos);
+        
+        _levelEnvironmentController.Initialize(_levelService.CurrentLevelSo);
+        PlayerFireUseCase playerFireUseCase = new PlayerFireUseCase(_signalBus, _bulletFactory, _bullletSpawnPos, _playerDirection, _coroutineManager);
+        playerFireUseCase.Initialize(_playerConfigService.Config.bulletSpeed, _playerConfigService.Config.bulletDamage, _playerConfigService.Config.fireCooldown, _playerConfigService.Config.startAmmo);
+
+        _playerInputController.Initialize(_playerMovement);
+
+        _signalBus.Subscribe<TryFireSignal>(playerFireUseCase.TryFire);
         _signalBus.Subscribe<PauseSignal>(Pause);
         _signalBus.Subscribe<UnPauseSignal>(UnPause);
         _signalBus.Subscribe<PlayerDeadSignal>(PlayerDead);
         _signalBus.Subscribe<LevelCompleteSignal>(LevelComplete);
-        _signalBus.Subscribe<EnemyCollisionSignal>(PlayerTakeDamage);
     }
     private void LevelComplete()
     {
         _signalBus.Fire<FreezeSignal>();
-        _popupsController.ShowPopup(LevelPopupType.LevelComplete,true);
+        _popupsController.ShowPopup(LevelPopupType.LevelComplete, true);
     }
     private void Pause()
     {
@@ -40,16 +84,15 @@ public class LevelController :  IInitializable, IDisposable
     {
         _signalBus.Fire<UnFreezeSignal>();
     }
-    private void PlayerTakeDamage(EnemyCollisionSignal arg)
-    {
-        _playerHealth.TakeDamage(arg.Damage);
-    }
     private void PlayerDead()
     {
-        _popupsController.ShowPopup(LevelPopupType.GameOver, "Level "+_levelService.CurrentLevelSo.LevelIndex);
-        _playerController.Die();
+        _popupsController.ShowPopup(LevelPopupType.GameOver, "Level " + _levelService.CurrentLevelSo.LevelIndex);
     }
     public void Dispose()
     {
+        _signalBus.Unsubscribe<PauseSignal>(Pause);
+        _signalBus.Unsubscribe<UnPauseSignal>(UnPause);
+        _signalBus.Unsubscribe<PlayerDeadSignal>(PlayerDead);
+        _signalBus.Unsubscribe<LevelCompleteSignal>(LevelComplete);
     }
 }

@@ -1,7 +1,4 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
@@ -43,11 +40,6 @@ public class LevelEnvironmentController : MonoBehaviour
             patrolPath.endPosition = dTO.PatrolPath.endPosition;
 
             _enemyFactory.Spawn(dTO.Type, patrolPath, dTO.Pos, _enemyParentTr);
-           /* EnemyController enemy = _container.InstantiatePrefab(_enemyPrefab).GetComponent<EnemyController>();
-            enemy.transform.parent = _enemyParentTr;
-            enemy.transform.position = dTO.Pos;
-            enemy.PreInitialize(dTO.EnemyType, patrolPath);
-            spawnedEnemy.Add(enemy);*/
         }
         _container.InstantiatePrefab(levelSO.LevelCompleteObj, _levelParentTr);
         _confiner.m_BoundingShape2D = GameObject.Instantiate(levelSO.CameraPlygonCollider, _levelParentTr);

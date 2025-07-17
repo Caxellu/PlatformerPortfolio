@@ -6,10 +6,15 @@ public class EnemyFactory : MonoBehaviour
 {
     [Inject] private DiContainer _container;
     [Inject] private EnemyService _enemyService;
-    [Inject] private IPlayerPos _playerPos;
     [Inject] private SignalBus _signalBus;
 
+    private IPlayerPos _playerPos;
+
     [SerializeField] private GameObject EnemyPrefab;
+    public void Construct(IPlayerPos playerPos)
+    {
+        _playerPos = playerPos;
+    }
     public void Spawn(EnemyType type, PatrolPath path, Vector3 pos, Transform parent)
     {
         var enemySO = _enemyService.GetByType(type);

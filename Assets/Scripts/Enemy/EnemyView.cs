@@ -3,7 +3,6 @@ using UnityEngine;
 public class EnemyView : MonoBehaviour, IDamageable
 {
     public EnemyAnimationView Animation { get; private set; }
-    public Health Health { get; private set; }
 
     private EnemyControllerLogic _logic;
 
@@ -15,15 +14,14 @@ public class EnemyView : MonoBehaviour, IDamageable
     private void Awake()
     {
         Animation = GetComponent<EnemyAnimationView>();
-        Health = GetComponent<Health>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var player = collision.gameObject.GetComponent<PlayerController>();
+        var player = collision.gameObject.GetComponent<IPlayerView>();
         if (player != null)
         {
-            _logic.OnPlayerCollision(player);
+            _logic.OnPlayerCollision();
         }
     }
 

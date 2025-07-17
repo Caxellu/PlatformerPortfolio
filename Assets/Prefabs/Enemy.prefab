@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6316790780512839028}
   - component: {fileID: 4994431609442543122}
   - component: {fileID: 6160990344230237778}
-  - component: {fileID: 4679741329209608783}
   - component: {fileID: 2729674417339016863}
   - component: {fileID: 3836098730088315243}
   - component: {fileID: 7876731990796094307}
@@ -127,18 +126,6 @@ MonoBehaviour:
   gravityModifier: 1
   velocity: {x: 0, y: 0}
   move: {x: 0, y: 0}
---- !u!114 &4679741329209608783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4844384042333188350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46ac97abbc2b75409a72f7416684bf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2729674417339016863
 MonoBehaviour:
   m_ObjectHideFlags: 0

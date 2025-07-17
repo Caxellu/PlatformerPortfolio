@@ -1,21 +1,26 @@
 using System;
 using Zenject;
-public class PlayerInputController: IInitializable, IDisposable
+public class PlayerInputController: IDisposable
 {
-    [Inject] private SignalBus _signalBus;
-    [Inject] private PlayerController _playerController;
-    [Inject] private PlayerFireUseCase _bulletController;
+    private readonly SignalBus _signalBus;
+    private IPlayerMovement _playerMovement;
     PlayerInputAction playerInputAction;
     private bool _isRightHeld = false;
     private bool _isLeftHeld = false;
-    public void Initialize()
+
+    public PlayerInputController(SignalBus signalBus)
     {
+        _signalBus=signalBus;
+    }
+    public void Initialize(IPlayerMovement playerMovement)
+    {
+        _playerMovement = playerMovement;
+
         _signalBus.Subscribe<StartRightMoveSignal>(StartRightMove);
         _signalBus.Subscribe<StopRightMoveSignal>(StopRightMove);
         _signalBus.Subscribe<StartLeftMoveSignal>(StartLeftMove);
         _signalBus.Subscribe<StopLeftMoveSignal>(StopLeftMove);
-        _signalBus.Subscribe<JumpSignal>(_playerController.TryJump);
-        _signalBus.Subscribe<TryFireSignal>(_bulletController.TryFire);
+        _signalBus.Subscribe<JumpSignal>(_playerMovement.TryJump);
 
         playerInputAction = new PlayerInputAction();
         playerInputAction.Enable();
@@ -24,9 +29,10 @@ public class PlayerInputController: IInitializable, IDisposable
         playerInputAction.Gameplay.RightMove.canceled += ctx => StopRightMove();
         playerInputAction.Gameplay.LeftMove.performed += ctx => StartLeftMove();
         playerInputAction.Gameplay.LeftMove.canceled += ctx => StopLeftMove();
-        playerInputAction.Gameplay.Jump.started += ctx => _playerController.TryJump();
-        playerInputAction.Gameplay.Fire.started += ctx => _bulletController.TryFire();
+        playerInputAction.Gameplay.Jump.started += ctx => _playerMovement.TryJump();
+        playerInputAction.Gameplay.Fire.started += ctx => _signalBus.Fire<TryFireSignal>();//_bulletController.TryFire();
     }
+
     private void StartRightMove()
     {
         _isRightHeld = true;
@@ -51,15 +57,15 @@ public class PlayerInputController: IInitializable, IDisposable
     {
         if (_isLeftHeld && !_isRightHeld)
         {
-            _playerController.StartLeftMove();
+            _playerMovement.StartLeftMove();
         }
         else if (_isRightHeld && !_isLeftHeld)
         {
-            _playerController.StartRightMove();
+            _playerMovement.StartRightMove();
         }
         else
         {
-            _playerController.StopMove();
+            _playerMovement.StopMove();
         }
     }
     public void Dispose()
@@ -68,8 +74,8 @@ public class PlayerInputController: IInitializable, IDisposable
         _signalBus.Unsubscribe<StopRightMoveSignal>(StopRightMove);
         _signalBus.Unsubscribe<StartLeftMoveSignal>(StartLeftMove);
         _signalBus.Unsubscribe<StopLeftMoveSignal>(StopLeftMove);
-        _signalBus.Unsubscribe<JumpSignal>(_playerController.TryJump);
-        _signalBus.Unsubscribe<TryFireSignal>(_bulletController.TryFire);
+        _signalBus.Unsubscribe<JumpSignal>(_playerMovement.TryJump);
+        //_signalBus.Unsubscribe<TryFireSignal>(_bulletController.TryFire);
 
         playerInputAction.Disable();
 
@@ -77,7 +83,7 @@ public class PlayerInputController: IInitializable, IDisposable
         playerInputAction.Gameplay.RightMove.canceled -= ctx => StopRightMove();
         playerInputAction.Gameplay.LeftMove.performed -= ctx => StartLeftMove();
         playerInputAction.Gameplay.LeftMove.canceled -= ctx => StopLeftMove();
-        playerInputAction.Gameplay.Jump.started -= ctx => _playerController.TryJump();
-        playerInputAction.Gameplay.Fire.started -= ctx => _bulletController.TryFire();
+        playerInputAction.Gameplay.Jump.started -= ctx => _playerMovement.TryJump();
+        //playerInputAction.Gameplay.Fire.started -= ctx => _bulletController.TryFire();
     }
 }

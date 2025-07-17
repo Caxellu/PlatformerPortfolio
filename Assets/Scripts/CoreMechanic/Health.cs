@@ -1,37 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using System;
 
-public class Health : MonoBehaviour
+public class Health: IDamageable
 {
-    private UnityAction _dieAction;
-    private UnityAction _hurtAction;
+    public event Action OnHurt;
+    public event Action OnDie;
 
-    private int currentHp;
+    private int _currentHp;
     private int _maxHp;
-    public bool IsAlive => currentHp > 0;
-    public void Initialize(UnityAction dieAction,UnityAction hurtAction, int maxHp)
+    public bool IsAlive => _currentHp > 0;
+    public Health(int maxHp)
     {
-        _dieAction = dieAction;
-        _hurtAction= hurtAction;
         _maxHp = maxHp;
-        currentHp = _maxHp;
+        _currentHp = maxHp;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int amount)
     {
-        currentHp= Mathf.Clamp(currentHp-damage, 0, _maxHp);
-        if (currentHp == 0)
-            Die();
+        if (!IsAlive) return;
+
+        _currentHp = Mathf.Clamp(_currentHp - amount, 0, _maxHp);
+
+        if (_currentHp == 0)
+            OnDie?.Invoke();
         else
-            Hurt();
+            OnHurt?.Invoke();
     }
-    private void Hurt()
-    {
-        _hurtAction?.Invoke();
-    }
-    private void Die()
-    {
-        _dieAction?.Invoke();
-    }
+
 }

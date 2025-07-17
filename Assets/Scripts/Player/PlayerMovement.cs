@@ -1,50 +1,33 @@
 using System;
 using UnityEngine;
-using Zenject;
-
-[RequireComponent(typeof(Animator))]
-public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos, IPlayerDirection, IDisposable
+public class PlayerMovement : KinematicObject, IPlayerMovement
 {
-    [Inject] private SignalBus _signalBus;
-    [Inject] private ICoroutineManager _corutineManager;
-    [SerializeField] private Transform _bulletSpawnTr;
-    private float _maxSpeed;
-    private float _jumpTakeOffSpeed;
-    private float _fireDuration;
+    public event Action<bool> OnDirectionAction;
     private JumpState jumpState = JumpState.Grounded;
-
-    private Animator animator;
-
-    private Vector2 move;
-
+    private float _jumpTakeOffSpeed;
+    private float _maxSpeed;
     private bool jump;
     private bool stopJump;
-    private bool isFire;
-    private bool isRightDir = true;
-
-    Vector2 IPlayerPos.Position => transform.position;
-
-    Vector2 IBullletSpawnPos.Position => _bulletSpawnTr.position;
-
-    bool IPlayerDirection.IsRightDir => isRightDir;
-
-    public void Initialize(float speed, float jumpTakeOffSpeed, float fireDuration)
+    private Vector2 move;
+    private Action<bool> _groundedAction;
+    private Action<float> _velocityXAction;
+    private Action<float> _velocityYAction;
+    public void Initialize(float maxSpeed, float jumpSpeed, Action<bool> groundedAction,
+        Action<float> velocityXAction, Action<float> velocityYAction)
     {
-        _jumpTakeOffSpeed = jumpTakeOffSpeed;
-        _fireDuration = fireDuration;
-        _maxSpeed = speed;
-        _signalBus.Subscribe<FireSignal>(Fire);
-        _signalBus.Subscribe<FreezeSignal>(Freeze);
-        _signalBus.Subscribe<UnFreezeSignal>(Unfreeze);
+        _maxSpeed = maxSpeed;
+        _jumpTakeOffSpeed= jumpSpeed;
+        _groundedAction = groundedAction;
+        _velocityXAction = velocityXAction;
+        _velocityYAction = velocityYAction;
     }
-
-    public void Dispose()
+    public void SetFreeze()
     {
-        _signalBus.Unsubscribe<FireSignal>(Fire);
+        Freeze();
     }
-    private void Awake()
+    public void SetUnFreeze()
     {
-        animator = GetComponent<Animator>();
+        Unfreeze();
     }
     public void StartRightMove()
     {
@@ -67,28 +50,12 @@ public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos, I
             stopJump = true;
         }
     }
-    public void Fire()
-    {
-        animator.SetBool("fire", true);
-        isFire = true;
-        _corutineManager.RunDelayedAction(_fireDuration, () => { isFire = false; animator.SetBool("fire", false); });
-    }
-    public void Hurt()
-    {
-        animator.SetTrigger("hurt");
-    }
-    public void Die()
-    {
-        StopMove();
-        gameObject.SetActive(false);
-    }
-   
     protected override void Update()
     {
         UpdateJumpState();
         base.Update();
     }
-    void UpdateJumpState()
+    private void UpdateJumpState()
     {
         jump = false;
         switch (jumpState)
@@ -130,22 +97,19 @@ public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos, I
         if (move.x > 0.01f)
         {
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            isRightDir = true;
+            OnDirectionAction?.Invoke(true);
         }
         else if (move.x < -0.01f)
         {
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            isRightDir = false;
+            OnDirectionAction?.Invoke(false);
         }
-
-        animator.SetBool("grounded", IsGrounded);
-        animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / _maxSpeed);
-        animator.SetFloat("velocityY", velocity.y / _maxSpeed);
+        _groundedAction?.Invoke(IsGrounded);
+        _velocityXAction?.Invoke(Mathf.Abs(velocity.x) / _maxSpeed);
+        _velocityYAction?.Invoke(velocity.y / _maxSpeed);
 
         targetVelocity = move * _maxSpeed;
     }
-
-
     public enum JumpState
     {
         Grounded,
@@ -154,16 +118,4 @@ public class PlayerController : KinematicObject, IPlayerPos, IBullletSpawnPos, I
         InFlight,
         Landed
     }
-}
-public interface IPlayerPos
-{
-    public Vector2 Position { get; }
-}
-public interface IBullletSpawnPos
-{
-    public Vector2 Position { get; }
-}
-public interface IPlayerDirection
-{
-    public bool IsRightDir { get; }
 }

@@ -3,11 +3,11 @@ using Zenject;
 
 public class LevelSceneInstaller : MonoInstaller
 {
-    [SerializeField] private PlayerController _playerController;
-    [SerializeField] private Health _playerHealth;
     [SerializeField] private BulletFactory _bulletFactory;
     [SerializeField] private LevelEnvironmentController _levelEnvironmentController;
     [SerializeField] private EnemyFactory _enemyFactory;
+    [SerializeField] private PlayerView _playerView;
+    [SerializeField] private PlayerMovement _playerMovement;
     public override void InstallBindings()
     {
         Container.DeclareSignal<StartRightMoveSignal>();
@@ -26,16 +26,19 @@ public class LevelSceneInstaller : MonoInstaller
         Container.DeclareSignal<LevelCompleteSignal>();
         Container.DeclareSignal<FreezeSignal>();
         Container.DeclareSignal<UnFreezeSignal>();
-        
 
 
+
+        Container.Bind<IPlayerView>().FromInstance(_playerView).AsSingle().NonLazy();
+        Container.Bind<IBullletSpawnPos>().FromInstance(_playerView).AsSingle().NonLazy();
+        Container.Bind<IPlayerDirection>().FromInstance(_playerView).AsSingle().NonLazy();
+        Container.Bind<IPlayerPos>().FromInstance(_playerView).AsSingle().NonLazy();
+
+        Container.Bind<IPlayerMovement>().FromInstance(_playerMovement).AsSingle().NonLazy();
         Container.BindInterfacesTo<PopupsController<LevelPopupType>>().AsSingle().NonLazy();
-        Container.Bind<PlayerFireUseCase>().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<EnemyFactory>().FromInstance(_enemyFactory).AsSingle().NonLazy();
+        Container.Bind<EnemyFactory>().FromInstance(_enemyFactory).AsSingle().NonLazy();
         Container.Bind<LevelEnvironmentController>().FromInstance(_levelEnvironmentController).AsSingle().NonLazy();
         Container.Bind<IBulletFactory>().FromInstance(_bulletFactory).AsSingle();
-        Container.Bind<Health>().FromInstance(_playerHealth).AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<PlayerController>().FromInstance(_playerController).AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<PlayerInputController>().AsSingle().NonLazy();
         Container.BindInterfacesAndSelfTo<LevelController>().AsSingle().NonLazy();
     }

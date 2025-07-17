@@ -8,6 +8,7 @@ public class EnemyControllerLogic
     private readonly IPlayerPos _playerPos;
     private readonly SignalBus _signalBus;
     private readonly PatrolPath _path;
+    public Health _health;
 
     private PatrolPath.Mover _mover;
     private bool _isPlayerFound;
@@ -20,7 +21,9 @@ public class EnemyControllerLogic
         _signalBus = signalBus;
         _path = path;
 
-        _view.Health.Initialize(OnDeath, null, _data.MaxHp);
+        _health = new Health(_data.MaxHp);
+        _health.OnHurt += null;
+        _health.OnDie += OnDeath;
         _view.Animation.Initialize(_data.AnimatorController, _data.Speed);
     }
 
@@ -59,10 +62,10 @@ public class EnemyControllerLogic
 
     public void TakeDamage(int amount)
     {
-        _view.Health.TakeDamage(amount);
+        _health.TakeDamage(amount);
     }
 
-    public void OnPlayerCollision(PlayerController player)
+    public void OnPlayerCollision()
     {
         _signalBus.Fire(new EnemyCollisionSignal(_data.Damage));
     }

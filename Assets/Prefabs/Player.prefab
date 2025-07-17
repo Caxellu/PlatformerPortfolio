@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8150459088533039757}
-  - component: {fileID: 1157280630173742804}
-  - component: {fileID: 1298223299121708601}
   - component: {fileID: 4343919641821673005}
+  - component: {fileID: 6682621894369806115}
+  - component: {fileID: 7776753514473778576}
   - component: {fileID: 2022478448969696738}
   - component: {fileID: 8473118147898818193}
   - component: {fileID: 4008434439066322209}
@@ -38,34 +38,6 @@ Transform:
   - {fileID: 5325722619183203344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1157280630173742804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28993800405055352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb8a00f31521aca44b825e8e8ac57bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  gravityModifier: 1
-  velocity: {x: 0, y: 0}
-  _bulletSpawnTr: {fileID: 5325722619183203344}
---- !u!114 &1298223299121708601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28993800405055352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46ac97abbc2b75409a72f7416684bf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &4343919641821673005
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -118,6 +90,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6682621894369806115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28993800405055352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42bf8f0605902084e8a131c5fa500124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minGroundNormalY: 0.65
+  gravityModifier: 1
+  velocity: {x: 0, y: 0}
+--- !u!114 &7776753514473778576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28993800405055352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ec5972595b48344ebf8dd0830d1f7a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2022478448969696738}
+  spriteRenderer: {fileID: 4343919641821673005}
+  _bulletSpawnTr: {fileID: 5325722619183203344}
 --- !u!95 &2022478448969696738
 Animator:
   serializedVersion: 5

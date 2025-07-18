@@ -21,7 +21,6 @@ public class LevelSceneInstaller : MonoInstaller
         Container.DeclareSignal<UnPauseSignal>();
         Container.DeclareSignal<PlayerDeadSignal>();
         Container.DeclareSignal<BulletHitSignal>();
-        Container.DeclareSignal<UpdateAmmoSignal>();
         Container.DeclareSignal<LevelCompleteSignal>();
         Container.DeclareSignal<FreezeSignal>();
         Container.DeclareSignal<UnFreezeSignal>();

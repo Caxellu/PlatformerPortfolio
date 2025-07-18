@@ -61,7 +61,7 @@ public class LevelController : IInitializable, IDisposable
         
         _levelEnvironmentController.Initialize(_levelService.CurrentLevelSo, enemyPresenter);
         PlayerFireUseCase playerFireUseCase = new PlayerFireUseCase(_signalBus, _bulletFactory, _bullletSpawnPos, _playerDirection, _coroutineManager);
-        playerFireUseCase.Initialize(_playerConfigService.Config.bulletSpeed, _playerConfigService.Config.bulletDamage, _playerConfigService.Config.fireCooldown, _playerConfigService.Config.startAmmo);
+        playerFireUseCase.Initialize(_playerConfigService.Config.bulletSpeed, _playerConfigService.Config.bulletDamage, _playerConfigService.Config.fireCooldown);
 
         _playerInputController.Initialize(_playerMovement);
 

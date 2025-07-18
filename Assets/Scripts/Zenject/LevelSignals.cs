@@ -10,12 +10,6 @@ public class FireSignal {
     public bool IsRightDir;
     public FireSignal(bool isRightDir) { IsRightDir = isRightDir; }
 }
-public class UpdateAmmoSignal
-{
-    public int Current;
-    public int Max;
-    public UpdateAmmoSignal(int current, int max) { Current = current; Max = max; }
-}
 public class BulletHitSignal
 {
     public Vector2 Pos;

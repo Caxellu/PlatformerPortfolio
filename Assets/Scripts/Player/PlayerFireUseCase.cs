@@ -11,8 +11,6 @@ public class PlayerFireUseCase
     private float _bulletSpeed;
     private int _damage;
     private float _cooldown;
-    private int _maxAmmo;
-    private int _ammo;
     private bool _isCooldown;
 
     public PlayerFireUseCase(SignalBus signalBus, IBulletFactory bulletFactory,
@@ -25,31 +23,26 @@ public class PlayerFireUseCase
         _coroutines = coroutines;
     }
 
-    public void Initialize(float speed, int damage, float cooldown, int startAmmo)
+    public void Initialize(float speed, int damage, float cooldown)
     {
         _bulletSpeed = speed;
         _damage = damage;
         _cooldown = cooldown;
-        _maxAmmo = startAmmo;
-        _ammo = startAmmo;
 
         _signalBus.Subscribe<FireSignal>(OnFireSignal);
         _signalBus.Subscribe<BulletHitSignal>(OnBulletHit);
 
-        _signalBus.Fire(new UpdateAmmoSignal(_ammo, _maxAmmo));
     }
 
     public void TryFire()
     {
-        if (_isCooldown || _ammo <= 0)
+        if (_isCooldown )
             return;
 
         _isCooldown = true;
-        _ammo--;
 
         _coroutines.RunDelayedAction(_cooldown, () => _isCooldown = false);
 
-        _signalBus.Fire(new UpdateAmmoSignal(_ammo, _maxAmmo));
         _signalBus.Fire(new FireSignal(_direction.IsRightDir));
     }
 

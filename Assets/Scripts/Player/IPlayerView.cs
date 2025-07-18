@@ -1,6 +1,9 @@
+using System;
+
 public interface IPlayerView
 {
     void Initialize(float fireDuraion, ICoroutineManager coroutineManager);
+    event Action<int> OnTakeDamageAction;
     float FireDuration { get; }
     void SetRunning(bool isRunning);
     void Flip(bool facingRight);

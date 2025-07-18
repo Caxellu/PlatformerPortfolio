@@ -52,7 +52,7 @@ public class LevelController : IInitializable, IDisposable
     {
         _bulletFactory.Initialize(_playerConfigService.Config.bulletPrefab, _playerConfigService.Config.hitPrefab, _signalBus);
 
-        PlayerModel playerModel = new PlayerModel(_playerConfigService.Config.speed, _playerConfigService.Config.jumpTakeOffSpeed, _playerConfigService.Config.maxHp);
+        PlayerModel playerModel = new PlayerModel(_playerConfigService.Config.speed, _playerConfigService.Config.jumpTakeOffSpeed, _playerConfigService.Config.maxHp, _levelService.CurrentLevelSo.spawnPlayerPos);
         _playerView.Initialize(_playerConfigService.Config.fireDuration, _coroutineManager);
         PlayerPresenter playerPresenter = new PlayerPresenter(playerModel, _playerView, _playerMovement, _signalBus);
         

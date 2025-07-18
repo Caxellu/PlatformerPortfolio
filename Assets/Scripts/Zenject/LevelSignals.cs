@@ -22,12 +22,9 @@ public class BulletHitSignal
     public BulletHitSignal(Vector2 pos) { Pos = pos; }
 }
 public class PauseSignal { }
+public class RestartSignal { }
 public class UnPauseSignal { }
 public class  PlayerDeadSignal{}
-public class EnemyCollisionSignal {
-    public int Damage;
-    public EnemyCollisionSignal(int damage) { Damage = damage;}
-}
 public class LevelCompleteSignal{}
 public class FreezeSignal { }
 public class UnFreezeSignal { }

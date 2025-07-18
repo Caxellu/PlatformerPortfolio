@@ -5,13 +5,13 @@ using Zenject;
 
 public class LevelEnvironmentController : MonoBehaviour
 {
+    [Inject] private IPlayerMovement _playerMovement;
     [Inject] private DiContainer _container;
     [Inject] private EnemyFactory _enemyFactory;
     [SerializeField] private CinemachineConfiner _confiner;
     [Space]
     [SerializeField] private PatrolPath _patrolPathPrefab;
     [Space]
-    [SerializeField] private Transform _spawnPlayerTr;
     [SerializeField] private Grid _grid;
     [SerializeField] private Transform _enemyParentTr;
     [SerializeField] private Transform _patrolsPathParentTr;
@@ -29,8 +29,7 @@ public class LevelEnvironmentController : MonoBehaviour
         {
             GameObject.Instantiate(tilemap, _grid.transform);
         }
-
-        _spawnPlayerTr.transform.position = levelSO.spawnPlayerPos;
+        _playerMovement.SetPosition(levelSO.spawnPlayerPos);
 
         foreach (EnemyMoveDTO dTO in levelSO.enemyDTOs)
         {

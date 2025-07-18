@@ -19,14 +19,13 @@ public class LevelSceneInstaller : MonoInstaller
         Container.DeclareSignal<FireSignal>();
         Container.DeclareSignal<PauseSignal>();
         Container.DeclareSignal<UnPauseSignal>();
-        Container.DeclareSignal<EnemyCollisionSignal>();
         Container.DeclareSignal<PlayerDeadSignal>();
         Container.DeclareSignal<BulletHitSignal>();
         Container.DeclareSignal<UpdateAmmoSignal>();
         Container.DeclareSignal<LevelCompleteSignal>();
         Container.DeclareSignal<FreezeSignal>();
         Container.DeclareSignal<UnFreezeSignal>();
-
+        Container.DeclareSignal<RestartSignal>();
 
 
         Container.Bind<IPlayerView>().FromInstance(_playerView).AsSingle().NonLazy();

@@ -6,7 +6,9 @@ using Zenject;
 
 public class GameOverPopup : BasePopup, IInitializablePopup<string>
 {
-    [Inject] private SceneLoaderController _sceneLoaderController;
+    [Inject] SignalBus _signalBus;
+    [Inject] SceneLoaderController _sceneLoaderController;
+    [Inject] IPopupsController _popupsController;
     public override Enum Type => LevelPopupType.GameOver;
     [SerializeField] private Button _closeBtn;
     [SerializeField] private Button _restartbtn;
@@ -30,6 +32,7 @@ public class GameOverPopup : BasePopup, IInitializablePopup<string>
     }
     private void RestartbtnOnClick()
     {
-        _sceneLoaderController.LoadScene(SceneType.Level);
+        _signalBus.Fire<RestartSignal>();
+        _popupsController.HideCurrentPopup();
     }
 }

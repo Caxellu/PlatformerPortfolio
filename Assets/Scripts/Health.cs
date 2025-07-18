@@ -25,5 +25,9 @@ public class Health: IDamageable
         else
             OnHurt?.Invoke();
     }
+    public void SetMaxHp()
+    {
+        _currentHp=_maxHp;
+    }
 
 }

@@ -1515,7 +1515,7 @@ Transform:
   m_GameObject: {fileID: 677333553}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.58, y: -1.07, z: -10}
+  m_LocalPosition: {x: -13.81, y: -11.7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2364,7 +2364,7 @@ Transform:
   m_GameObject: {fileID: 957163761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.58, y: -1.07, z: -10}
+  m_LocalPosition: {x: -13.81, y: -11.7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3747,7 +3747,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _confiner: {fileID: 677333554}
   _patrolPathPrefab: {fileID: 9046397960721545192, guid: 6c113d92069d4414dabd8ad1a629cd0c, type: 3}
-  _spawnPlayerTr: {fileID: 1331041863}
   _grid: {fileID: 1760814803}
   _enemyParentTr: {fileID: 1605553294277105003}
   _patrolsPathParentTr: {fileID: 165657398}
@@ -5868,11 +5867,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150459088533039757, guid: 6693e1362a63878479d004ab056fd78a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.58
+      value: -13.81
       objectReference: {fileID: 0}
     - target: {fileID: 8150459088533039757, guid: 6693e1362a63878479d004ab056fd78a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.07
+      value: -11.7
       objectReference: {fileID: 0}
     - target: {fileID: 8150459088533039757, guid: 6693e1362a63878479d004ab056fd78a, type: 3}
       propertyPath: m_LocalPosition.z

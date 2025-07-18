@@ -21,6 +21,10 @@ public class PlayerMovement : KinematicObject, IPlayerMovement
         _velocityXAction = velocityXAction;
         _velocityYAction = velocityYAction;
     }
+    public void SetPosition(Vector2 vector2)
+    {
+        transform.position = vector2;
+    }
     public void SetFreeze()
     {
         Freeze();
@@ -110,6 +114,9 @@ public class PlayerMovement : KinematicObject, IPlayerMovement
 
         targetVelocity = move * _maxSpeed;
     }
+
+   
+
     public enum JumpState
     {
         Grounded,

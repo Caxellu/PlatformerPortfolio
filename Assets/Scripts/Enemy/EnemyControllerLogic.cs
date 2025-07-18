@@ -65,9 +65,9 @@ public class EnemyControllerLogic
         _health.TakeDamage(amount);
     }
 
-    public void OnPlayerCollision()
+    public void CauseDamage(IDamageable damageable)
     {
-        _signalBus.Fire(new EnemyCollisionSignal(_data.Damage));
+        damageable.TakeDamage(_data.Damage);
     }
 
     private void OnDeath()

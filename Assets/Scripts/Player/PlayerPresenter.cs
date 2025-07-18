@@ -15,12 +15,14 @@ public class PlayerPresenter: IDisposable
         _view = view;
         _movement = movement;
 
+        _view.OnTakeDamageAction += _model.Health.TakeDamage;
+
         _movement.OnDirectionAction += _view.SetPlayerDirection;
         _model.Health.OnDie += OnPlayerDied;
         _model.Health.OnHurt += _view.SetHurt;
         _movement.Initialize(_model.MaxSpeed,_model.JumpForce, _view.SetGrounded, _view.SetVelocityX,_view.SetVelocityY);
 
-        _signalBus.Subscribe<EnemyCollisionSignal>(PlayerTakeDamage);
+        _signalBus.Subscribe<RestartSignal>(RespawnPlayer);
         _signalBus.Subscribe<PlayerDeadSignal>(PlayerDead);
         _signalBus.Subscribe<FireSignal>(_view.SetFire);
         _signalBus.Subscribe<FreezeSignal>(_movement.SetFreeze);
@@ -32,15 +34,17 @@ public class PlayerPresenter: IDisposable
         _movement.OnDirectionAction -= _view.SetPlayerDirection;
         _model.Health.OnDie -= OnPlayerDied;
         _model.Health.OnHurt -= _view.SetHurt;
-        _signalBus.Unsubscribe<EnemyCollisionSignal>(PlayerTakeDamage);
+        _signalBus.Unsubscribe<RestartSignal>(RespawnPlayer);
         _signalBus.Unsubscribe<PlayerDeadSignal>(PlayerDead);
         _signalBus.Unsubscribe<FireSignal>(_view.SetFire);
         _signalBus.Unsubscribe<FreezeSignal>(_movement.SetFreeze);
         _signalBus.Unsubscribe<UnFreezeSignal>(_movement.SetUnFreeze);
     }
-    private void PlayerTakeDamage(EnemyCollisionSignal arg)
+    private void RespawnPlayer()
     {
-        _model.Health.TakeDamage(arg.Damage);
+        _movement.SetPosition(_model.SpawnPos);
+        _model.ResetHP();
+        _view.SetActivePlayer(true);
     }
     private void OnPlayerDied()
     {

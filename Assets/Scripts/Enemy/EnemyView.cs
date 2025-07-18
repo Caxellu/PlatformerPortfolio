@@ -18,10 +18,10 @@ public class EnemyView : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var player = collision.gameObject.GetComponent<IPlayerView>();
-        if (player != null)
+        var damageable = collision.gameObject.GetComponent<IDamageable>();
+        if (damageable != null)
         {
-            _logic.OnPlayerCollision();
+            _logic.CauseDamage(damageable);
         }
     }
 

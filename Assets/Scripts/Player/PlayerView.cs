@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
-public class PlayerView : MonoBehaviour, IPlayerView, IBullletSpawnPos, IPlayerDirection, IPlayerPos
+public class PlayerView : MonoBehaviour, IPlayerView, IBullletSpawnPos, IPlayerDirection, IPlayerPos, IDamageable
 {
     [SerializeField] Animator animator;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] private Transform _bulletSpawnTr;
+    public event Action<int> OnTakeDamageAction;
     private float _fireDuration;
     private bool _isRightDir=true;
 
@@ -58,5 +60,10 @@ public class PlayerView : MonoBehaviour, IPlayerView, IBullletSpawnPos, IPlayerD
     public void SetVelocityY(float velocity)
     {
         animator.SetFloat("velocityY", velocity);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        OnTakeDamageAction?.Invoke(damage);
     }
 }

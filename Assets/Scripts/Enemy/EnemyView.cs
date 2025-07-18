@@ -1,36 +1,46 @@
+using System;
 using UnityEngine;
 
-public class EnemyView : MonoBehaviour, IDamageable
+public class EnemyView : MonoBehaviour, IDamageable, IEnemyView
 {
-    public EnemyAnimationView Animation { get; private set; }
+    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
 
-    private EnemyControllerLogic _logic;
-
-    public void Construct(EnemyControllerLogic logic)
-    {
-        _logic = logic;
-    }
-
+    public event Action OnUpdateAction;
+    public event Action<int> OnTakeDamageAction;
+    public event Action<IDamageable> OnCauseDamage;
+    public Vector3 Position { get { return transform.position; } }
     private void Awake()
     {
-        Animation = GetComponent<EnemyAnimationView>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
-
+    public void Initialize(RuntimeAnimatorController animatorController)
+    {
+        _animator.runtimeAnimatorController = animatorController;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            _logic.CauseDamage(damageable);
+            OnCauseDamage?.Invoke(damageable);
         }
     }
-
-    private void Update()
+    void Update()
     {
-        _logic?.Update();
+        OnUpdateAction?.Invoke();
     }
-    public void TakeDamage(int amount)
+    public void SetDirection(bool isRight)
     {
-        _logic.TakeDamage(amount);
+        _spriteRenderer.flipX = isRight;
+    }
+    public void TakeDamage(int damage)
+    {
+        OnTakeDamageAction?.Invoke(damage);
+    }
+    public void SetActive(bool flag)
+    {
+        gameObject.SetActive(flag);
     }
 }

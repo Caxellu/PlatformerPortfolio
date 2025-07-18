@@ -7,7 +7,6 @@ public class LevelEnvironmentController : MonoBehaviour
 {
     [Inject] private IPlayerMovement _playerMovement;
     [Inject] private DiContainer _container;
-    [Inject] private EnemyFactory _enemyFactory;
     [SerializeField] private CinemachineConfiner _confiner;
     [Space]
     [SerializeField] private PatrolPath _patrolPathPrefab;
@@ -17,10 +16,11 @@ public class LevelEnvironmentController : MonoBehaviour
     [SerializeField] private Transform _patrolsPathParentTr;
     [SerializeField] private Transform _levelParentTr;
     LevelSO _levelSO;
-
-    public void Initialize(LevelSO levelSO)
+    private EnemyPresenter _enemyPresenter;
+    public void Initialize(LevelSO levelSO, EnemyPresenter enemyPresenter)
     {
         _levelSO = levelSO;
+        _enemyPresenter= enemyPresenter;
         SetUpLevelEnvironment(_levelSO);
     }
     private void SetUpLevelEnvironment(LevelSO levelSO)
@@ -31,7 +31,9 @@ public class LevelEnvironmentController : MonoBehaviour
         }
         _playerMovement.SetPosition(levelSO.spawnPlayerPos);
 
-        foreach (EnemyMoveDTO dTO in levelSO.enemyDTOs)
+        _enemyPresenter.Intialize(levelSO.enemyDTOs, _patrolPathPrefab, _enemyParentTr);
+
+       /* foreach (EnemyMoveDTO dTO in levelSO.enemyDTOs)
         {
             PatrolPath patrolPath = GameObject.Instantiate(_patrolPathPrefab, _patrolsPathParentTr);
             patrolPath.transform.position = dTO.PatrolPath.globalPosition;
@@ -39,7 +41,7 @@ public class LevelEnvironmentController : MonoBehaviour
             patrolPath.endPosition = dTO.PatrolPath.endPosition;
 
             _enemyFactory.Spawn(dTO.Type, patrolPath, dTO.Pos, _enemyParentTr);
-        }
+        }*/
         _container.InstantiatePrefab(levelSO.LevelCompleteObj, _levelParentTr);
         _confiner.m_BoundingShape2D = GameObject.Instantiate(levelSO.CameraPlygonCollider, _levelParentTr);
     }

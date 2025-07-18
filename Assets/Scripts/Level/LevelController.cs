@@ -15,7 +15,7 @@ public class LevelController : IInitializable, IDisposable
     private readonly IPlayerPos _playerPos;
     private readonly IPlayerMovement _playerMovement;
     private readonly IBullletSpawnPos _bullletSpawnPos;
-    private readonly IPlayerDirection _playerDirection;
+    private readonly IUnitDirection _playerDirection;
 
     public LevelController(
         SignalBus signalBus,
@@ -31,7 +31,7 @@ public class LevelController : IInitializable, IDisposable
         IPlayerPos playerPos,
         IPlayerMovement playerMovement,
         IBullletSpawnPos bullletSpawnPos,
-        IPlayerDirection playerDirection)
+        IUnitDirection playerDirection)
     {
         _signalBus = signalBus;
         _playerConfigService = playerConfigService;
@@ -56,13 +56,15 @@ public class LevelController : IInitializable, IDisposable
         _playerView.Initialize(_playerConfigService.Config.fireDuration, _coroutineManager);
         PlayerPresenter playerPresenter = new PlayerPresenter(playerModel, _playerView, _playerMovement, _signalBus);
         
-        _enemyFactory.Construct(_playerPos);
+
+        EnemyPresenter enemyPresenter = new EnemyPresenter(_enemyFactory, _playerPos, _signalBus);
         
-        _levelEnvironmentController.Initialize(_levelService.CurrentLevelSo);
+        _levelEnvironmentController.Initialize(_levelService.CurrentLevelSo, enemyPresenter);
         PlayerFireUseCase playerFireUseCase = new PlayerFireUseCase(_signalBus, _bulletFactory, _bullletSpawnPos, _playerDirection, _coroutineManager);
         playerFireUseCase.Initialize(_playerConfigService.Config.bulletSpeed, _playerConfigService.Config.bulletDamage, _playerConfigService.Config.fireCooldown, _playerConfigService.Config.startAmmo);
 
         _playerInputController.Initialize(_playerMovement);
+
 
         _signalBus.Subscribe<TryFireSignal>(playerFireUseCase.TryFire);
         _signalBus.Subscribe<PauseSignal>(Pause);

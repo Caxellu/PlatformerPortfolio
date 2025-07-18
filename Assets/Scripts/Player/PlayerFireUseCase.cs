@@ -5,7 +5,7 @@ public class PlayerFireUseCase
     private readonly SignalBus _signalBus;
     private readonly IBulletFactory _bulletFactory;
     private readonly IBullletSpawnPos _spawnPos;
-    private readonly IPlayerDirection _direction;
+    private readonly IUnitDirection _direction;
     private readonly ICoroutineManager _coroutines;
 
     private float _bulletSpeed;
@@ -16,7 +16,7 @@ public class PlayerFireUseCase
     private bool _isCooldown;
 
     public PlayerFireUseCase(SignalBus signalBus, IBulletFactory bulletFactory,
-        IBullletSpawnPos spawnPos, IPlayerDirection direction, ICoroutineManager coroutines)
+        IBullletSpawnPos spawnPos, IUnitDirection direction, ICoroutineManager coroutines)
     {
         _signalBus = signalBus;
         _bulletFactory = bulletFactory;

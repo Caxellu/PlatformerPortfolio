@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 928085394454049873}
   - component: {fileID: 6316790780512839028}
   - component: {fileID: 4994431609442543122}
-  - component: {fileID: 6160990344230237778}
   - component: {fileID: 2729674417339016863}
+  - component: {fileID: 6364511844753318118}
   - component: {fileID: 3836098730088315243}
   - component: {fileID: 7876731990796094307}
   m_Layer: 0
@@ -110,22 +110,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6160990344230237778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4844384042333188350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcdfa68bc16db5749876d4172703ed8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  gravityModifier: 1
-  velocity: {x: 0, y: 0}
-  move: {x: 0, y: 0}
 --- !u!114 &2729674417339016863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +122,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0dbbeb7a318f549ae134cd01728fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6364511844753318118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4844384042333188350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a170c021e9fce494a99479c7484f1c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minGroundNormalY: 0.65
+  gravityModifier: 1
+  velocity: {x: 0, y: 0}
 --- !u!50 &3836098730088315243
 Rigidbody2D:
   serializedVersion: 4

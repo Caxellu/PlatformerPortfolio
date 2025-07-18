@@ -30,7 +30,7 @@ public class LevelSceneInstaller : MonoInstaller
 
         Container.Bind<IPlayerView>().FromInstance(_playerView).AsSingle().NonLazy();
         Container.Bind<IBullletSpawnPos>().FromInstance(_playerView).AsSingle().NonLazy();
-        Container.Bind<IPlayerDirection>().FromInstance(_playerView).AsSingle().NonLazy();
+        Container.Bind<IUnitDirection>().FromInstance(_playerView).AsSingle().NonLazy();
         Container.Bind<IPlayerPos>().FromInstance(_playerView).AsSingle().NonLazy();
 
         Container.Bind<IPlayerMovement>().FromInstance(_playerMovement).AsSingle().NonLazy();

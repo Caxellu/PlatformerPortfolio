@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerView : MonoBehaviour, IPlayerView, IBullletSpawnPos, IPlayerDirection, IPlayerPos, IDamageable
+public class PlayerView : MonoBehaviour, IPlayerView, IBullletSpawnPos, IUnitDirection, IPlayerPos, IDamageable
 {
     [SerializeField] Animator animator;
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -12,7 +12,7 @@ public class PlayerView : MonoBehaviour, IPlayerView, IBullletSpawnPos, IPlayerD
 
     private ICoroutineManager _corutineManager;
     Vector2 IPlayerPos.Position => transform.position;
-    bool IPlayerDirection.IsRightDir => _isRightDir;
+    bool IUnitDirection.IsRightDir => _isRightDir;
     Vector2 IBullletSpawnPos.Position => _bulletSpawnTr.position;
     public float FireDuration => _fireDuration;
     public void Initialize (float fireDuraion, ICoroutineManager coroutineManager)

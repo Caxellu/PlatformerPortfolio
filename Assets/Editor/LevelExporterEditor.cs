@@ -2,19 +2,23 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-[CustomEditor(typeof(LevelExporter))]
-public class LevelExporterEditor : Editor
+
+namespace LevelCreator
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(LevelExporter))]
+    public class LevelExporterEditor : Editor
     {
-        DrawDefaultInspector();
-
-        LevelExporter demo = (LevelExporter)target;
-
-        if (GUILayout.Button("Save Level"))
+        public override void OnInspectorGUI()
         {
-            demo.ExportLevel();
-        }
-    }
+            DrawDefaultInspector();
 
+            LevelExporter demo = (LevelExporter)target;
+
+            if (GUILayout.Button("Save Level"))
+            {
+                demo.ExportLevel();
+            }
+        }
+
+    }
 }

@@ -31,5 +31,15 @@ MonoBehaviour:
       globalPosition: {x: 25.82, y: -1.68}
       startPosition: {x: -2.537814, y: 0}
       endPosition: {x: 3.484736, y: 0}
-  LevelCompleteObj: {fileID: 9190908547164150332, guid: 2c6f796eb42bcad40a69a6de19c7f90a, type: 3}
-  CameraPlygonCollider: {fileID: 2875410110477367790, guid: 0aacb25c0323b8546ae0d9380a442c93, type: 3}
+  winColliderDTO:
+    wordPositionWinCollider: {x: 31.450191, y: -1.1533246}
+    winColliderOffset: {x: 0, y: 0}
+    winColliderSize: {x: 1, y: 1}
+  polygonColliderDTO:
+    worldPosition: {x: 7.1080256, y: -0.7085452}
+    paths:
+    - {x: 26.707058, y: 6.0275793}
+    - {x: -18.229319, y: 5.766245}
+    - {x: -17.812431, y: -4.150353}
+    - {x: 13.520908, y: -3.5147562}
+    - {x: 26.751907, y: -3.5097098}

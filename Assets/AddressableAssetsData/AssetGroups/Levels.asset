@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 267ff49296e0a3a47975b6909260f97c
   m_SerializeEntries:
-  - m_GUID: d8935449de3c96a41aeca83b1c68ef7e
-    m_Address: Level 1
+  - m_GUID: aa61b505d05287348a6f6473b04fcdf0
+    m_Address: Assets/Prefabs/Levels/Level  1.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Level

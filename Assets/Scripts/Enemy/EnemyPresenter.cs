@@ -19,18 +19,19 @@ public class EnemyPresenter : IDisposable
         _playerPos = playerPos;
         _signalBus = signalBus;
     }
-    public void Intialize(List<EnemyMoveDTO> data, PatrolPath patrolPathPrefab, Transform parent)
+    public void Intialize(List<EnemyDTO> data, Transform parent)
     {
-        foreach (EnemyMoveDTO enemyMove in data)
+        foreach (EnemyDTO enemyMove in data)
         {
-            PatrolPath patrolPath = GameObject.Instantiate(patrolPathPrefab, parent);
+            GameObject obj = new GameObject("PatrolPath");
+            PatrolPath patrolPath = obj.AddComponent<PatrolPath>();
             patrolPath.transform.position = enemyMove.PatrolPath.globalPosition;
             patrolPath.startPosition = enemyMove.PatrolPath.startPosition;
             patrolPath.endPosition = enemyMove.PatrolPath.endPosition;
 
             EnemyModel model;
             IEnemyMovement movement;
-            IEnemyView view = _enemyFactory.Spawn(enemyMove.Type, enemyMove.Pos, parent,out model, out movement);
+            IEnemyView view = _enemyFactory.Spawn(enemyMove.Type, enemyMove.EnemySpawnPos, parent,out model, out movement);
 
             view.OnCauseDamage += model.CauseDamage;
             view.OnTakeDamageAction += model.TakeDamage;

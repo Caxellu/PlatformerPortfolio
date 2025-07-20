@@ -1,0 +1,1731 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b004d22441af75843815b11897f2fe6d, type: 3}
+  m_Name: Level  1
+  m_EditorClassIdentifier: 
+  LevelIndex: 0
+  tiles:
+  - x: -12
+    y: 3
+    tileId: 0
+  - x: -12
+    y: 4
+    tileId: 1
+  - x: -12
+    y: 5
+    tileId: 2
+  - x: -12
+    y: 6
+    tileId: 3
+  - x: -12
+    y: 7
+    tileId: 4
+  - x: -12
+    y: 8
+    tileId: 4
+  - x: -12
+    y: 9
+    tileId: 4
+  - x: -12
+    y: 10
+    tileId: 4
+  - x: -12
+    y: 11
+    tileId: 4
+  - x: -11
+    y: 3
+    tileId: 5
+  - x: -10
+    y: 3
+    tileId: 0
+  - x: -9
+    y: 3
+    tileId: 5
+  - x: -8
+    y: 3
+    tileId: 0
+  - x: -7
+    y: 3
+    tileId: 5
+  - x: -6
+    y: 3
+    tileId: 0
+  - x: -5
+    y: 3
+    tileId: 5
+  - x: -4
+    y: 3
+    tileId: 0
+  - x: -3
+    y: 3
+    tileId: 5
+  - x: -2
+    y: 3
+    tileId: 0
+  - x: -1
+    y: 3
+    tileId: 5
+  - x: 0
+    y: 3
+    tileId: 0
+  - x: 1
+    y: 3
+    tileId: 5
+  - x: 2
+    y: 3
+    tileId: 0
+  - x: 3
+    y: 3
+    tileId: 5
+  - x: 4
+    y: 3
+    tileId: 0
+  - x: 5
+    y: 3
+    tileId: 5
+  - x: 6
+    y: 3
+    tileId: 0
+  - x: 7
+    y: 3
+    tileId: 5
+  - x: 8
+    y: 3
+    tileId: 0
+  - x: 9
+    y: 3
+    tileId: 5
+  - x: 9
+    y: 4
+    tileId: 6
+  - x: 9
+    y: 5
+    tileId: 7
+  - x: 10
+    y: 3
+    tileId: 0
+  - x: 10
+    y: 4
+    tileId: 8
+  - x: 10
+    y: 5
+    tileId: 9
+  - x: 11
+    y: 3
+    tileId: 5
+  - x: 11
+    y: 4
+    tileId: 10
+  - x: 11
+    y: 5
+    tileId: 11
+  - x: 12
+    y: 3
+    tileId: 0
+  - x: 12
+    y: 4
+    tileId: 6
+  - x: 12
+    y: 5
+    tileId: 12
+  - x: 12
+    y: 6
+    tileId: 6
+  - x: 12
+    y: 7
+    tileId: 7
+  - x: 13
+    y: 3
+    tileId: 5
+  - x: 13
+    y: 4
+    tileId: 8
+  - x: 13
+    y: 5
+    tileId: 13
+  - x: 13
+    y: 6
+    tileId: 8
+  - x: 13
+    y: 7
+    tileId: 9
+  - x: 14
+    y: 3
+    tileId: 14
+  - x: 14
+    y: 4
+    tileId: 10
+  - x: 14
+    y: 5
+    tileId: 15
+  - x: 14
+    y: 6
+    tileId: 10
+  - x: 14
+    y: 7
+    tileId: 11
+  - x: 15
+    y: 3
+    tileId: 16
+  - x: 15
+    y: 4
+    tileId: 17
+  - x: 15
+    y: 5
+    tileId: 18
+  - x: 15
+    y: 6
+    tileId: 19
+  - x: 15
+    y: 7
+    tileId: 12
+  - x: 15
+    y: 8
+    tileId: 7
+  - x: 16
+    y: 3
+    tileId: 0
+  - x: 16
+    y: 4
+    tileId: 20
+  - x: 16
+    y: 5
+    tileId: 21
+  - x: 16
+    y: 6
+    tileId: 22
+  - x: 16
+    y: 7
+    tileId: 13
+  - x: 16
+    y: 8
+    tileId: 9
+  - x: 17
+    y: 3
+    tileId: 5
+  - x: 17
+    y: 4
+    tileId: 23
+  - x: 17
+    y: 5
+    tileId: 24
+  - x: 17
+    y: 6
+    tileId: 25
+  - x: 17
+    y: 7
+    tileId: 15
+  - x: 17
+    y: 8
+    tileId: 11
+  - x: 18
+    y: 3
+    tileId: 0
+  - x: 19
+    y: 3
+    tileId: 5
+  - x: 20
+    y: 3
+    tileId: 0
+  - x: 21
+    y: 3
+    tileId: 5
+  - x: 22
+    y: 3
+    tileId: 0
+  - x: 23
+    y: 3
+    tileId: 5
+  - x: 24
+    y: 3
+    tileId: 0
+  - x: 25
+    y: 3
+    tileId: 5
+  - x: 26
+    y: 3
+    tileId: 0
+  - x: 27
+    y: 3
+    tileId: 5
+  - x: 28
+    y: 3
+    tileId: 0
+  - x: 29
+    y: 3
+    tileId: 5
+  - x: 30
+    y: 3
+    tileId: 14
+  - x: 31
+    y: 3
+    tileId: 1
+  - x: 31
+    y: 6
+    tileId: 2
+  - x: 31
+    y: 7
+    tileId: 26
+  - x: 31
+    y: 8
+    tileId: 27
+  - x: 31
+    y: 9
+    tileId: 4
+  - x: 31
+    y: 10
+    tileId: 4
+  - x: 31
+    y: 11
+    tileId: 4
+  - x: 32
+    y: 3
+    tileId: 0
+  - x: 32
+    y: 7
+    tileId: 28
+  - x: 32
+    y: 8
+    tileId: 28
+  - x: 32
+    y: 9
+    tileId: 28
+  - x: 32
+    y: 10
+    tileId: 28
+  - x: 32
+    y: 11
+    tileId: 28
+  - x: 33
+    y: 3
+    tileId: 5
+  - x: 33
+    y: 7
+    tileId: 28
+  - x: 33
+    y: 8
+    tileId: 28
+  - x: 33
+    y: 9
+    tileId: 28
+  - x: 33
+    y: 10
+    tileId: 28
+  - x: 33
+    y: 11
+    tileId: 28
+  - x: 34
+    y: 3
+    tileId: 4
+  - x: 34
+    y: 4
+    tileId: 4
+  - x: 34
+    y: 5
+    tileId: 4
+  - x: 34
+    y: 6
+    tileId: 4
+  - x: 34
+    y: 7
+    tileId: 4
+  tilesback:
+  - x: -17
+    y: -1
+    tileId: 28
+  - x: -17
+    y: 0
+    tileId: 28
+  - x: -17
+    y: 1
+    tileId: 28
+  - x: -17
+    y: 2
+    tileId: 28
+  - x: -17
+    y: 3
+    tileId: 28
+  - x: -17
+    y: 4
+    tileId: 28
+  - x: -17
+    y: 5
+    tileId: 28
+  - x: -17
+    y: 6
+    tileId: 28
+  - x: -17
+    y: 7
+    tileId: 28
+  - x: -17
+    y: 8
+    tileId: 28
+  - x: -17
+    y: 9
+    tileId: 28
+  - x: -17
+    y: 10
+    tileId: 28
+  - x: -17
+    y: 11
+    tileId: 28
+  - x: -16
+    y: -1
+    tileId: 28
+  - x: -16
+    y: 0
+    tileId: 28
+  - x: -16
+    y: 1
+    tileId: 28
+  - x: -16
+    y: 2
+    tileId: 29
+  - x: -16
+    y: 3
+    tileId: 0
+  - x: -16
+    y: 4
+    tileId: 28
+  - x: -16
+    y: 5
+    tileId: 28
+  - x: -16
+    y: 6
+    tileId: 28
+  - x: -16
+    y: 7
+    tileId: 28
+  - x: -16
+    y: 8
+    tileId: 28
+  - x: -16
+    y: 9
+    tileId: 28
+  - x: -16
+    y: 10
+    tileId: 28
+  - x: -16
+    y: 11
+    tileId: 28
+  - x: -15
+    y: -1
+    tileId: 28
+  - x: -15
+    y: 0
+    tileId: 28
+  - x: -15
+    y: 1
+    tileId: 28
+  - x: -15
+    y: 2
+    tileId: 30
+  - x: -15
+    y: 3
+    tileId: 5
+  - x: -15
+    y: 4
+    tileId: 28
+  - x: -15
+    y: 5
+    tileId: 28
+  - x: -15
+    y: 6
+    tileId: 28
+  - x: -15
+    y: 7
+    tileId: 28
+  - x: -15
+    y: 8
+    tileId: 28
+  - x: -15
+    y: 9
+    tileId: 28
+  - x: -15
+    y: 10
+    tileId: 28
+  - x: -15
+    y: 11
+    tileId: 28
+  - x: -14
+    y: -1
+    tileId: 28
+  - x: -14
+    y: 0
+    tileId: 28
+  - x: -14
+    y: 1
+    tileId: 28
+  - x: -14
+    y: 2
+    tileId: 29
+  - x: -14
+    y: 3
+    tileId: 0
+  - x: -14
+    y: 4
+    tileId: 28
+  - x: -14
+    y: 5
+    tileId: 28
+  - x: -14
+    y: 6
+    tileId: 28
+  - x: -14
+    y: 7
+    tileId: 28
+  - x: -14
+    y: 8
+    tileId: 28
+  - x: -14
+    y: 9
+    tileId: 28
+  - x: -14
+    y: 10
+    tileId: 28
+  - x: -14
+    y: 11
+    tileId: 28
+  - x: -13
+    y: -1
+    tileId: 28
+  - x: -13
+    y: 0
+    tileId: 28
+  - x: -13
+    y: 1
+    tileId: 28
+  - x: -13
+    y: 2
+    tileId: 30
+  - x: -13
+    y: 3
+    tileId: 5
+  - x: -13
+    y: 4
+    tileId: 28
+  - x: -13
+    y: 5
+    tileId: 28
+  - x: -13
+    y: 6
+    tileId: 4
+  - x: -13
+    y: 7
+    tileId: 31
+  - x: -13
+    y: 8
+    tileId: 31
+  - x: -13
+    y: 9
+    tileId: 31
+  - x: -13
+    y: 10
+    tileId: 31
+  - x: -13
+    y: 11
+    tileId: 31
+  - x: -12
+    y: -1
+    tileId: 28
+  - x: -12
+    y: 0
+    tileId: 28
+  - x: -12
+    y: 1
+    tileId: 28
+  - x: -12
+    y: 2
+    tileId: 29
+  - x: -11
+    y: -1
+    tileId: 28
+  - x: -11
+    y: 0
+    tileId: 28
+  - x: -11
+    y: 1
+    tileId: 28
+  - x: -11
+    y: 2
+    tileId: 30
+  - x: -10
+    y: -1
+    tileId: 28
+  - x: -10
+    y: 0
+    tileId: 28
+  - x: -10
+    y: 1
+    tileId: 28
+  - x: -10
+    y: 2
+    tileId: 29
+  - x: -9
+    y: -1
+    tileId: 28
+  - x: -9
+    y: 0
+    tileId: 28
+  - x: -9
+    y: 1
+    tileId: 28
+  - x: -9
+    y: 2
+    tileId: 30
+  - x: -8
+    y: -1
+    tileId: 28
+  - x: -8
+    y: 0
+    tileId: 28
+  - x: -8
+    y: 1
+    tileId: 28
+  - x: -8
+    y: 2
+    tileId: 29
+  - x: -7
+    y: -1
+    tileId: 28
+  - x: -7
+    y: 0
+    tileId: 28
+  - x: -7
+    y: 1
+    tileId: 28
+  - x: -7
+    y: 2
+    tileId: 30
+  - x: -6
+    y: -1
+    tileId: 28
+  - x: -6
+    y: 0
+    tileId: 28
+  - x: -6
+    y: 1
+    tileId: 28
+  - x: -6
+    y: 2
+    tileId: 29
+  - x: -6
+    y: 7
+    tileId: 32
+  - x: -5
+    y: -1
+    tileId: 28
+  - x: -5
+    y: 0
+    tileId: 28
+  - x: -5
+    y: 1
+    tileId: 28
+  - x: -5
+    y: 2
+    tileId: 30
+  - x: -4
+    y: -1
+    tileId: 28
+  - x: -4
+    y: 0
+    tileId: 28
+  - x: -4
+    y: 1
+    tileId: 28
+  - x: -4
+    y: 2
+    tileId: 29
+  - x: -3
+    y: -1
+    tileId: 28
+  - x: -3
+    y: 0
+    tileId: 28
+  - x: -3
+    y: 1
+    tileId: 28
+  - x: -3
+    y: 2
+    tileId: 30
+  - x: -2
+    y: -1
+    tileId: 28
+  - x: -2
+    y: 0
+    tileId: 28
+  - x: -2
+    y: 1
+    tileId: 28
+  - x: -2
+    y: 2
+    tileId: 29
+  - x: -1
+    y: -1
+    tileId: 28
+  - x: -1
+    y: 0
+    tileId: 28
+  - x: -1
+    y: 1
+    tileId: 28
+  - x: -1
+    y: 2
+    tileId: 30
+  - x: 0
+    y: -1
+    tileId: 28
+  - x: 0
+    y: 0
+    tileId: 28
+  - x: 0
+    y: 1
+    tileId: 28
+  - x: 0
+    y: 2
+    tileId: 29
+  - x: 1
+    y: -1
+    tileId: 28
+  - x: 1
+    y: 0
+    tileId: 28
+  - x: 1
+    y: 1
+    tileId: 28
+  - x: 1
+    y: 2
+    tileId: 30
+  - x: 1
+    y: 6
+    tileId: 33
+  - x: 2
+    y: -1
+    tileId: 28
+  - x: 2
+    y: 0
+    tileId: 28
+  - x: 2
+    y: 1
+    tileId: 28
+  - x: 2
+    y: 2
+    tileId: 29
+  - x: 3
+    y: -1
+    tileId: 28
+  - x: 3
+    y: 0
+    tileId: 28
+  - x: 3
+    y: 1
+    tileId: 28
+  - x: 3
+    y: 2
+    tileId: 30
+  - x: 4
+    y: -1
+    tileId: 28
+  - x: 4
+    y: 0
+    tileId: 28
+  - x: 4
+    y: 1
+    tileId: 28
+  - x: 4
+    y: 2
+    tileId: 29
+  - x: 4
+    y: 7
+    tileId: 32
+  - x: 5
+    y: -1
+    tileId: 28
+  - x: 5
+    y: 0
+    tileId: 28
+  - x: 5
+    y: 1
+    tileId: 28
+  - x: 5
+    y: 2
+    tileId: 30
+  - x: 6
+    y: -1
+    tileId: 28
+  - x: 6
+    y: 0
+    tileId: 28
+  - x: 6
+    y: 1
+    tileId: 28
+  - x: 6
+    y: 2
+    tileId: 29
+  - x: 7
+    y: -1
+    tileId: 28
+  - x: 7
+    y: 0
+    tileId: 28
+  - x: 7
+    y: 1
+    tileId: 28
+  - x: 7
+    y: 2
+    tileId: 30
+  - x: 8
+    y: -1
+    tileId: 28
+  - x: 8
+    y: 0
+    tileId: 28
+  - x: 8
+    y: 1
+    tileId: 28
+  - x: 8
+    y: 2
+    tileId: 29
+  - x: 9
+    y: -1
+    tileId: 34
+  - x: 9
+    y: 0
+    tileId: 34
+  - x: 9
+    y: 1
+    tileId: 34
+  - x: 9
+    y: 2
+    tileId: 35
+  - x: 10
+    y: -1
+    tileId: 34
+  - x: 10
+    y: 0
+    tileId: 34
+  - x: 10
+    y: 1
+    tileId: 34
+  - x: 10
+    y: 2
+    tileId: 36
+  - x: 10
+    y: 4
+    tileId: 28
+  - x: 10
+    y: 5
+    tileId: 28
+  - x: 10
+    y: 6
+    tileId: 28
+  - x: 10
+    y: 7
+    tileId: 28
+  - x: 10
+    y: 8
+    tileId: 28
+  - x: 10
+    y: 9
+    tileId: 28
+  - x: 10
+    y: 10
+    tileId: 28
+  - x: 10
+    y: 11
+    tileId: 28
+  - x: 11
+    y: -1
+    tileId: 34
+  - x: 11
+    y: 0
+    tileId: 34
+  - x: 11
+    y: 1
+    tileId: 34
+  - x: 11
+    y: 2
+    tileId: 35
+  - x: 11
+    y: 4
+    tileId: 28
+  - x: 11
+    y: 5
+    tileId: 28
+  - x: 11
+    y: 6
+    tileId: 28
+  - x: 11
+    y: 7
+    tileId: 28
+  - x: 11
+    y: 8
+    tileId: 28
+  - x: 11
+    y: 9
+    tileId: 28
+  - x: 11
+    y: 10
+    tileId: 28
+  - x: 11
+    y: 11
+    tileId: 28
+  - x: 12
+    y: -1
+    tileId: 34
+  - x: 12
+    y: 0
+    tileId: 34
+  - x: 12
+    y: 1
+    tileId: 34
+  - x: 12
+    y: 2
+    tileId: 36
+  - x: 12
+    y: 4
+    tileId: 28
+  - x: 12
+    y: 5
+    tileId: 28
+  - x: 12
+    y: 6
+    tileId: 28
+  - x: 12
+    y: 7
+    tileId: 28
+  - x: 12
+    y: 8
+    tileId: 28
+  - x: 12
+    y: 9
+    tileId: 28
+  - x: 12
+    y: 10
+    tileId: 28
+  - x: 12
+    y: 11
+    tileId: 28
+  - x: 13
+    y: -1
+    tileId: 34
+  - x: 13
+    y: 0
+    tileId: 34
+  - x: 13
+    y: 1
+    tileId: 34
+  - x: 13
+    y: 2
+    tileId: 35
+  - x: 13
+    y: 4
+    tileId: 28
+  - x: 13
+    y: 5
+    tileId: 28
+  - x: 13
+    y: 6
+    tileId: 28
+  - x: 13
+    y: 7
+    tileId: 28
+  - x: 13
+    y: 8
+    tileId: 28
+  - x: 13
+    y: 9
+    tileId: 28
+  - x: 13
+    y: 10
+    tileId: 28
+  - x: 13
+    y: 11
+    tileId: 28
+  - x: 14
+    y: -1
+    tileId: 34
+  - x: 14
+    y: 0
+    tileId: 34
+  - x: 14
+    y: 1
+    tileId: 34
+  - x: 14
+    y: 2
+    tileId: 36
+  - x: 14
+    y: 4
+    tileId: 28
+  - x: 14
+    y: 5
+    tileId: 28
+  - x: 14
+    y: 6
+    tileId: 28
+  - x: 14
+    y: 7
+    tileId: 28
+  - x: 14
+    y: 8
+    tileId: 28
+  - x: 14
+    y: 9
+    tileId: 28
+  - x: 14
+    y: 10
+    tileId: 28
+  - x: 14
+    y: 11
+    tileId: 28
+  - x: 15
+    y: -1
+    tileId: 34
+  - x: 15
+    y: 0
+    tileId: 34
+  - x: 15
+    y: 1
+    tileId: 34
+  - x: 15
+    y: 2
+    tileId: 35
+  - x: 15
+    y: 4
+    tileId: 28
+  - x: 15
+    y: 5
+    tileId: 28
+  - x: 15
+    y: 6
+    tileId: 28
+  - x: 15
+    y: 7
+    tileId: 28
+  - x: 15
+    y: 8
+    tileId: 28
+  - x: 15
+    y: 9
+    tileId: 28
+  - x: 15
+    y: 10
+    tileId: 28
+  - x: 15
+    y: 11
+    tileId: 28
+  - x: 16
+    y: -1
+    tileId: 34
+  - x: 16
+    y: 0
+    tileId: 34
+  - x: 16
+    y: 1
+    tileId: 34
+  - x: 16
+    y: 2
+    tileId: 36
+  - x: 16
+    y: 4
+    tileId: 28
+  - x: 16
+    y: 5
+    tileId: 28
+  - x: 16
+    y: 6
+    tileId: 28
+  - x: 16
+    y: 7
+    tileId: 28
+  - x: 16
+    y: 8
+    tileId: 28
+  - x: 16
+    y: 9
+    tileId: 28
+  - x: 16
+    y: 10
+    tileId: 28
+  - x: 16
+    y: 11
+    tileId: 28
+  - x: 17
+    y: -1
+    tileId: 34
+  - x: 17
+    y: 0
+    tileId: 34
+  - x: 17
+    y: 1
+    tileId: 34
+  - x: 17
+    y: 2
+    tileId: 35
+  - x: 17
+    y: 4
+    tileId: 28
+  - x: 17
+    y: 5
+    tileId: 28
+  - x: 17
+    y: 6
+    tileId: 28
+  - x: 17
+    y: 7
+    tileId: 28
+  - x: 17
+    y: 8
+    tileId: 28
+  - x: 17
+    y: 9
+    tileId: 28
+  - x: 17
+    y: 10
+    tileId: 28
+  - x: 17
+    y: 11
+    tileId: 28
+  - x: 18
+    y: -1
+    tileId: 34
+  - x: 18
+    y: 0
+    tileId: 34
+  - x: 18
+    y: 1
+    tileId: 34
+  - x: 18
+    y: 2
+    tileId: 36
+  - x: 18
+    y: 4
+    tileId: 28
+  - x: 18
+    y: 5
+    tileId: 28
+  - x: 18
+    y: 6
+    tileId: 28
+  - x: 18
+    y: 7
+    tileId: 28
+  - x: 18
+    y: 8
+    tileId: 28
+  - x: 18
+    y: 9
+    tileId: 28
+  - x: 18
+    y: 10
+    tileId: 28
+  - x: 18
+    y: 11
+    tileId: 28
+  - x: 19
+    y: -1
+    tileId: 34
+  - x: 19
+    y: 0
+    tileId: 34
+  - x: 19
+    y: 1
+    tileId: 34
+  - x: 19
+    y: 2
+    tileId: 35
+  - x: 19
+    y: 4
+    tileId: 28
+  - x: 19
+    y: 5
+    tileId: 28
+  - x: 19
+    y: 6
+    tileId: 28
+  - x: 19
+    y: 7
+    tileId: 28
+  - x: 19
+    y: 8
+    tileId: 28
+  - x: 19
+    y: 9
+    tileId: 28
+  - x: 19
+    y: 10
+    tileId: 28
+  - x: 19
+    y: 11
+    tileId: 28
+  - x: 20
+    y: -1
+    tileId: 34
+  - x: 20
+    y: 0
+    tileId: 34
+  - x: 20
+    y: 1
+    tileId: 34
+  - x: 20
+    y: 2
+    tileId: 36
+  - x: 20
+    y: 4
+    tileId: 28
+  - x: 20
+    y: 5
+    tileId: 28
+  - x: 20
+    y: 6
+    tileId: 28
+  - x: 20
+    y: 7
+    tileId: 28
+  - x: 20
+    y: 8
+    tileId: 28
+  - x: 20
+    y: 9
+    tileId: 28
+  - x: 20
+    y: 10
+    tileId: 28
+  - x: 20
+    y: 11
+    tileId: 28
+  - x: 21
+    y: -1
+    tileId: 34
+  - x: 21
+    y: 0
+    tileId: 34
+  - x: 21
+    y: 1
+    tileId: 34
+  - x: 21
+    y: 2
+    tileId: 35
+  - x: 21
+    y: 4
+    tileId: 28
+  - x: 21
+    y: 5
+    tileId: 28
+  - x: 21
+    y: 6
+    tileId: 28
+  - x: 21
+    y: 7
+    tileId: 28
+  - x: 21
+    y: 8
+    tileId: 28
+  - x: 21
+    y: 9
+    tileId: 28
+  - x: 21
+    y: 10
+    tileId: 28
+  - x: 21
+    y: 11
+    tileId: 28
+  - x: 22
+    y: -1
+    tileId: 34
+  - x: 22
+    y: 0
+    tileId: 34
+  - x: 22
+    y: 1
+    tileId: 34
+  - x: 22
+    y: 2
+    tileId: 36
+  - x: 22
+    y: 4
+    tileId: 28
+  - x: 22
+    y: 5
+    tileId: 28
+  - x: 22
+    y: 6
+    tileId: 28
+  - x: 22
+    y: 7
+    tileId: 28
+  - x: 22
+    y: 8
+    tileId: 28
+  - x: 22
+    y: 9
+    tileId: 28
+  - x: 22
+    y: 10
+    tileId: 28
+  - x: 22
+    y: 11
+    tileId: 28
+  - x: 23
+    y: -1
+    tileId: 34
+  - x: 23
+    y: 0
+    tileId: 34
+  - x: 23
+    y: 1
+    tileId: 34
+  - x: 23
+    y: 2
+    tileId: 35
+  - x: 23
+    y: 4
+    tileId: 34
+  - x: 23
+    y: 5
+    tileId: 34
+  - x: 23
+    y: 6
+    tileId: 34
+  - x: 23
+    y: 7
+    tileId: 34
+  - x: 23
+    y: 8
+    tileId: 34
+  - x: 23
+    y: 9
+    tileId: 34
+  - x: 23
+    y: 10
+    tileId: 34
+  - x: 23
+    y: 11
+    tileId: 34
+  - x: 24
+    y: -1
+    tileId: 34
+  - x: 24
+    y: 0
+    tileId: 34
+  - x: 24
+    y: 1
+    tileId: 34
+  - x: 24
+    y: 2
+    tileId: 36
+  - x: 24
+    y: 4
+    tileId: 34
+  - x: 24
+    y: 5
+    tileId: 34
+  - x: 24
+    y: 6
+    tileId: 34
+  - x: 24
+    y: 7
+    tileId: 34
+  - x: 24
+    y: 8
+    tileId: 34
+  - x: 24
+    y: 9
+    tileId: 34
+  - x: 24
+    y: 10
+    tileId: 34
+  - x: 24
+    y: 11
+    tileId: 34
+  - x: 25
+    y: -1
+    tileId: 34
+  - x: 25
+    y: 0
+    tileId: 34
+  - x: 25
+    y: 1
+    tileId: 34
+  - x: 25
+    y: 2
+    tileId: 35
+  - x: 25
+    y: 4
+    tileId: 34
+  - x: 25
+    y: 5
+    tileId: 34
+  - x: 25
+    y: 6
+    tileId: 34
+  - x: 25
+    y: 7
+    tileId: 34
+  - x: 25
+    y: 8
+    tileId: 34
+  - x: 25
+    y: 9
+    tileId: 34
+  - x: 25
+    y: 10
+    tileId: 34
+  - x: 25
+    y: 11
+    tileId: 34
+  - x: 26
+    y: -1
+    tileId: 34
+  - x: 26
+    y: 0
+    tileId: 34
+  - x: 26
+    y: 1
+    tileId: 34
+  - x: 26
+    y: 2
+    tileId: 36
+  - x: 26
+    y: 4
+    tileId: 34
+  - x: 26
+    y: 5
+    tileId: 34
+  - x: 26
+    y: 6
+    tileId: 34
+  - x: 26
+    y: 7
+    tileId: 34
+  - x: 26
+    y: 8
+    tileId: 34
+  - x: 26
+    y: 9
+    tileId: 34
+  - x: 26
+    y: 10
+    tileId: 34
+  - x: 26
+    y: 11
+    tileId: 34
+  - x: 27
+    y: -1
+    tileId: 34
+  - x: 27
+    y: 0
+    tileId: 34
+  - x: 27
+    y: 1
+    tileId: 34
+  - x: 27
+    y: 2
+    tileId: 35
+  - x: 27
+    y: 4
+    tileId: 34
+  - x: 27
+    y: 5
+    tileId: 34
+  - x: 27
+    y: 6
+    tileId: 34
+  - x: 27
+    y: 7
+    tileId: 34
+  - x: 27
+    y: 8
+    tileId: 34
+  - x: 27
+    y: 9
+    tileId: 34
+  - x: 27
+    y: 10
+    tileId: 34
+  - x: 27
+    y: 11
+    tileId: 34
+  - x: 28
+    y: -1
+    tileId: 34
+  - x: 28
+    y: 0
+    tileId: 34
+  - x: 28
+    y: 1
+    tileId: 34
+  - x: 28
+    y: 2
+    tileId: 36
+  - x: 28
+    y: 4
+    tileId: 34
+  - x: 28
+    y: 5
+    tileId: 34
+  - x: 28
+    y: 6
+    tileId: 34
+  - x: 28
+    y: 7
+    tileId: 34
+  - x: 28
+    y: 8
+    tileId: 34
+  - x: 28
+    y: 9
+    tileId: 34
+  - x: 28
+    y: 10
+    tileId: 34
+  - x: 28
+    y: 11
+    tileId: 34
+  - x: 29
+    y: -1
+    tileId: 34
+  - x: 29
+    y: 0
+    tileId: 34
+  - x: 29
+    y: 1
+    tileId: 34
+  - x: 29
+    y: 2
+    tileId: 35
+  - x: 29
+    y: 4
+    tileId: 34
+  - x: 29
+    y: 5
+    tileId: 34
+  - x: 29
+    y: 6
+    tileId: 34
+  - x: 29
+    y: 7
+    tileId: 34
+  - x: 29
+    y: 8
+    tileId: 34
+  - x: 29
+    y: 9
+    tileId: 34
+  - x: 29
+    y: 10
+    tileId: 34
+  - x: 29
+    y: 11
+    tileId: 34
+  - x: 30
+    y: -1
+    tileId: 34
+  - x: 30
+    y: 0
+    tileId: 34
+  - x: 30
+    y: 1
+    tileId: 34
+  - x: 30
+    y: 2
+    tileId: 36
+  - x: 30
+    y: 4
+    tileId: 34
+  - x: 30
+    y: 5
+    tileId: 34
+  - x: 30
+    y: 6
+    tileId: 34
+  - x: 30
+    y: 7
+    tileId: 34
+  - x: 30
+    y: 8
+    tileId: 34
+  - x: 30
+    y: 9
+    tileId: 34
+  - x: 30
+    y: 10
+    tileId: 34
+  - x: 30
+    y: 11
+    tileId: 34
+  - x: 31
+    y: -1
+    tileId: 34
+  - x: 31
+    y: 0
+    tileId: 34
+  - x: 31
+    y: 1
+    tileId: 34
+  - x: 31
+    y: 2
+    tileId: 35
+  - x: 31
+    y: 4
+    tileId: 34
+  - x: 31
+    y: 5
+    tileId: 34
+  - x: 31
+    y: 6
+    tileId: 34
+  - x: 31
+    y: 7
+    tileId: 34
+  - x: 31
+    y: 8
+    tileId: 34
+  - x: 31
+    y: 9
+    tileId: 34
+  - x: 31
+    y: 10
+    tileId: 34
+  - x: 31
+    y: 11
+    tileId: 34
+  - x: 32
+    y: -1
+    tileId: 34
+  - x: 32
+    y: 0
+    tileId: 34
+  - x: 32
+    y: 1
+    tileId: 34
+  - x: 32
+    y: 2
+    tileId: 36
+  - x: 32
+    y: 4
+    tileId: 28
+  - x: 32
+    y: 5
+    tileId: 28
+  - x: 32
+    y: 6
+    tileId: 28
+  - x: 33
+    y: -1
+    tileId: 34
+  - x: 33
+    y: 0
+    tileId: 34
+  - x: 33
+    y: 1
+    tileId: 34
+  - x: 33
+    y: 2
+    tileId: 34
+  - x: 33
+    y: 4
+    tileId: 28
+  - x: 33
+    y: 5
+    tileId: 28
+  - x: 33
+    y: 6
+    tileId: 28
+  - x: 34
+    y: -1
+    tileId: 34
+  - x: 34
+    y: 0
+    tileId: 34
+  - x: 34
+    y: 1
+    tileId: 34
+  - x: 34
+    y: 2
+    tileId: 34
+  - x: 34
+    y: 8
+    tileId: 34
+  - x: 34
+    y: 9
+    tileId: 34
+  - x: 34
+    y: 10
+    tileId: 34
+  - x: 34
+    y: 11
+    tileId: 34
+  uniqueTileBase:
+  - {fileID: 11400000, guid: 0499f29ad1e3a0f4083ba945e1373fe3, type: 2}
+  - {fileID: 11400000, guid: 9a3e903bf02b93a4dbcba0d84a9dfa67, type: 2}
+  - {fileID: 11400000, guid: 85b3f21276962bc46a1a0c10cd400b4e, type: 2}
+  - {fileID: 11400000, guid: 4fb21c7cadc0461408888fd0fc5fd7a8, type: 2}
+  - {fileID: 11400000, guid: 49af8d532484c6a4da27af263ec8a0f9, type: 2}
+  - {fileID: 11400000, guid: c713672735888064c9cc8a11fa5a5ddd, type: 2}
+  - {fileID: 11400000, guid: 708e73394cce4ff47ba8b97d81ba4f68, type: 2}
+  - {fileID: 11400000, guid: 7d1f57b99bed6c440b15f7374fe3d62b, type: 2}
+  - {fileID: 11400000, guid: 3470d124f1f965240b026fe7e4e7779a, type: 2}
+  - {fileID: 11400000, guid: f397e4d51aa12c948ad74832cefaebe9, type: 2}
+  - {fileID: 11400000, guid: 7f3206636643b79438059a587218aaef, type: 2}
+  - {fileID: 11400000, guid: ac8b67bdca0feda44a9677d5d6a4247c, type: 2}
+  - {fileID: 11400000, guid: 626579260d870e046a06c441cebae23c, type: 2}
+  - {fileID: 11400000, guid: 5f79b21911bff564387b4130d661189c, type: 2}
+  - {fileID: 11400000, guid: 03d6db037bbec9c47a8504266b27a3ab, type: 2}
+  - {fileID: 11400000, guid: e44399ae287bddb4cb5e5fa1d668b4d4, type: 2}
+  - {fileID: 11400000, guid: c53cd9825f11dc34994220eaabd2dfd5, type: 2}
+  - {fileID: 11400000, guid: 0ca42ccd900a8694fb155b27a4d10339, type: 2}
+  - {fileID: 11400000, guid: 4b7e16cafb9c5b949b47fb7d99906b8e, type: 2}
+  - {fileID: 11400000, guid: ed874b6e1d4c585469b2bfdf39e30c28, type: 2}
+  - {fileID: 11400000, guid: 296aadd034cb2814f9df28aa1f202d8b, type: 2}
+  - {fileID: 11400000, guid: af32f9200ff02114b94be736fed153e3, type: 2}
+  - {fileID: 11400000, guid: 18216bd022a56f548835bf61787fd614, type: 2}
+  - {fileID: 11400000, guid: 7523c42fe6d03c34986ba02dd3edd52d, type: 2}
+  - {fileID: 11400000, guid: 03f8297a0ae241d4c8e7bdddf095fe38, type: 2}
+  - {fileID: 11400000, guid: 925a4905172aafe41ba01818a9fa43ef, type: 2}
+  - {fileID: 11400000, guid: 9cbd62ea363e51f46959b911c07d1258, type: 2}
+  - {fileID: 11400000, guid: 3e325cca73c715f4f95cc5f512a0feb9, type: 2}
+  - {fileID: 11400000, guid: 8f783015d3617464594e1ad965c9614f, type: 2}
+  - {fileID: 11400000, guid: 6af698081d2839d4e867b8a88b71bc4c, type: 2}
+  - {fileID: 11400000, guid: f717b67d778cac44092ec949817f03bd, type: 2}
+  - {fileID: 11400000, guid: 164c467206cf41f4992f92b430cb4442, type: 2}
+  - {fileID: 11400000, guid: a0d649e9e90087545b5bf743d8d54e94, type: 2}
+  - {fileID: 11400000, guid: f8a0784eb75833c4c8bf2e657b3229ef, type: 2}
+  - {fileID: 11400000, guid: d6eae15ad7a11f646b701c581a40d804, type: 2}
+  - {fileID: 11400000, guid: 2d5de55b1ad7b294abd0c8b7567a57d0, type: 2}
+  - {fileID: 11400000, guid: 4952ff1b06575a94da34fa6cab4e7a0a, type: 2}
+  enemyDTOs:
+  - Type: 1
+    PatrolPath:
+      globalPosition: {x: 4.49, y: -1.68}
+      startPosition: {x: -2.537814, y: 0}
+      endPosition: {x: 3.484736, y: 0}
+    EnemySpawnPos: {x: 1.952186, y: -1.25, z: 0}
+  - Type: 0
+    PatrolPath:
+      globalPosition: {x: 25.82, y: -1.68}
+      startPosition: {x: -2.537814, y: 0}
+      endPosition: {x: 3.484736, y: 0}
+    EnemySpawnPos: {x: 23.282187, y: -1.25, z: 0}
+  spawnPlayerPos: {x: -4.451975, y: -1.0785452, z: 0.0499396}
+  winColliderDTO:
+    wordPositionWinCollider: {x: 31.450191, y: -1.1533246}
+    winColliderOffset: {x: 0, y: 0}
+    winColliderSize: {x: 1, y: 1}
+  polygonColliderDTO:
+    worldPosition: {x: 7.1080256, y: -0.7085452}
+    paths:
+    - {x: 26.707058, y: 6.0275793}
+    - {x: -18.229319, y: 5.766245}
+    - {x: -17.812431, y: -4.150353}
+    - {x: 13.520908, y: -3.5147562}
+    - {x: 26.751907, y: -3.5097098}

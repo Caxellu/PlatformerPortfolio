@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b004d22441af75843815b11897f2fe6d, type: 3}
   m_Name: Level  1
   m_EditorClassIdentifier: 
-  LevelIndex: 0
+  LevelIndex: 1
   tiles:
   - x: -12
     y: 3

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,7 @@ public class LevelUIController : MonoBehaviour
     [SerializeField] private ButtonInputProxy _jumpBtn;
     [SerializeField] private ButtonInputProxy _fireBtn;
     [SerializeField] private ButtonInputProxy _pauseBtn;
+    [SerializeField] private TMP_Text _playerHPText;
     private void OnEnable()
     {
         _rightMoveBtn.Initialize(RightMoveOnclick_started, RightMoveOnClick_canceled);
@@ -16,8 +18,12 @@ public class LevelUIController : MonoBehaviour
         _jumpBtn.Initialize(JumpOnClick);
         _fireBtn.Initialize(FireOnClick);
         _pauseBtn.Initialize(PauseOnClick);
+        _signalBus.Subscribe<PlayerHPUpdateSignal>(UpodatePlayerHp);
     }
-
+    private void UpodatePlayerHp(PlayerHPUpdateSignal playerHPUpdateSignal)
+    {
+        _playerHPText.text = playerHPUpdateSignal.HP.ToString() ;
+    }
     private void PauseOnClick()
     {
         _signalBus.Fire<PauseSignal>();

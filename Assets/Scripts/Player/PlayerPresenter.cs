@@ -20,6 +20,9 @@ public class PlayerPresenter: IDisposable
         _movement.OnDirectionAction += _view.SetPlayerDirection;
         _model.Health.OnDie += OnPlayerDied;
         _model.Health.OnHurt += _view.SetHurt;
+        _model.Health.OnHurt += OnUpdatePlayerHp;
+        OnUpdatePlayerHp();
+
         _movement.Initialize(_model.MaxSpeed,_model.JumpForce, _view.SetGrounded, _view.SetVelocityX,_view.SetVelocityY);
 
         _signalBus.Subscribe<RestartSignal>(RespawnPlayer);
@@ -34,6 +37,8 @@ public class PlayerPresenter: IDisposable
         _movement.OnDirectionAction -= _view.SetPlayerDirection;
         _model.Health.OnDie -= OnPlayerDied;
         _model.Health.OnHurt -= _view.SetHurt;
+        _model.Health.OnHurt -= OnUpdatePlayerHp;
+
         _signalBus.Unsubscribe<RestartSignal>(RespawnPlayer);
         _signalBus.Unsubscribe<PlayerDeadSignal>(PlayerDead);
         _signalBus.Unsubscribe<FireSignal>(_view.SetFire);
@@ -45,6 +50,10 @@ public class PlayerPresenter: IDisposable
         _movement.SetPosition(_model.SpawnPos);
         _model.ResetHP();
         _view.SetActivePlayer(true);
+    }
+    private void OnUpdatePlayerHp()
+    {
+        _signalBus.Fire(new PlayerHPUpdateSignal(_model.Health.Hp));
     }
     private void OnPlayerDied()
     {

@@ -75,11 +75,11 @@ public class LevelController : IInitializable, IDisposable
     private void LevelComplete()
     {
         _signalBus.Fire<FreezeSignal>();
-        _popupsController.ShowPopup(LevelPopupType.LevelComplete, true);
+        _popupsController.ShowPopup(LevelPopupType.LevelComplete);
     }
     private void Pause()
     {
-        _popupsController.ShowPopup(LevelPopupType.Pause, "Level 1");
+        _popupsController.ShowPopup(LevelPopupType.Pause, "Level " + _levelService.CurrentLevelSo.LevelIndex);
         _signalBus.Fire<FreezeSignal>();
     }
     private void UnPause()

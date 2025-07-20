@@ -25,7 +25,8 @@ public class LevelSceneInstaller : MonoInstaller
         Container.DeclareSignal<FreezeSignal>();
         Container.DeclareSignal<UnFreezeSignal>();
         Container.DeclareSignal<RestartSignal>();
-
+        Container.DeclareSignal<PlayerHPUpdateSignal>();
+        
 
         Container.Bind<IPlayerView>().FromInstance(_playerView).AsSingle().NonLazy();
         Container.Bind<IBullletSpawnPos>().FromInstance(_playerView).AsSingle().NonLazy();

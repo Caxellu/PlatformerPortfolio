@@ -22,3 +22,7 @@ public class  PlayerDeadSignal{}
 public class LevelCompleteSignal{}
 public class FreezeSignal { }
 public class UnFreezeSignal { }
+public class PlayerHPUpdateSignal{
+    public int HP;
+    public PlayerHPUpdateSignal(int hp) {  HP = hp; }
+}

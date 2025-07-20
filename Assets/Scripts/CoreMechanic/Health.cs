@@ -9,6 +9,7 @@ public class Health: IDamageable
     private int _currentHp;
     private int _maxHp;
     public bool IsAlive => _currentHp > 0;
+    public int Hp => _currentHp;
     public Health(int maxHp)
     {
         _maxHp = maxHp;

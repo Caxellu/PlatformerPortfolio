@@ -21,7 +21,7 @@ public class Health: IDamageable
 
         _currentHp = Mathf.Clamp(_currentHp - amount, 0, _maxHp);
 
-        if (_currentHp == 0)
+        if (_currentHp <= 0)
             OnDie?.Invoke();
         else
             OnHurt?.Invoke();
